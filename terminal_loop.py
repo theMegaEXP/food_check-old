@@ -6,7 +6,8 @@ from data import Data
 from barcode_search import get_ingredients
 
 data = Data()
-data.add_dummy_data(253)
+data.import_data()
+data.add_dummy_data(5)
 
 def start():
     while True:
@@ -26,7 +27,6 @@ def start():
                 continue
 
         elif start_input == 2:
-            
             while True:
                 print()
                 data.log_data()
@@ -49,6 +49,8 @@ def start():
                     break
         
         elif start_input == 3:
+            data.export_data()
+            print("Data saved and app exited.")
             break
         
         else:
