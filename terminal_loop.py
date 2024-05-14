@@ -1,6 +1,7 @@
 import re
 from datetime import datetime
 
+from helpers import format_datetime, ingredients_to_array
 from data import Data
 from barcode_search import get_ingredients
 
@@ -56,13 +57,11 @@ class InsertData:
         data.add_data({
             'barcode': barcode,
             'ingredientsRaw': ingredients,
-            'ingredients': ingredientsToArray(ingredients),
+            'ingredients': ingredients_to_array(ingredients),
             'date': date,
             'time': time,
             'datetime': format_datetime(date, time)
         })
-
-        print(data.data)
 
     def entry():
         print("Enter ingredients seperated by a comma and a space ', '")
@@ -118,6 +117,7 @@ class InsertData:
                     'ingredients': ingredients,
                     'date': date,
                     'time': time,
+                    'datetime': format_datetime(date, time)
                 })
                 break
             
@@ -128,17 +128,7 @@ class InsertData:
                 continue
     
 
-def format_datetime(date_str, time_str):
-    date = datetime.strptime(date_str, '%m-%d-%Y')
-    time = datetime.strptime(time_str, '%I:%M%p')
 
-    combined_datetime =  datetime(date.year, date.month, date.day, time.hour, time.minute)
-    formatted_datetime = combined_datetime.strftime('%Y-%m-%d %H:%M:%S')
-
-    return formatted_datetime
-
-def ingredientsToArray(ingredients):
-    return [elem for elem in re.split(r', |\(|\)', ingredients) if elem != '']
 
 
     

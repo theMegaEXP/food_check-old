@@ -15,6 +15,7 @@ class Generate:
     
     def time():
         hour = str(random.randint(1, 12))
+        hour_padded = f'0{hour}' if len(hour) < 2 else hour
         minute = str(random.randint(1, 12) * 5)
         ampm = 'AM' if random.randint(0, 1) == 0 else 'PM'
-        return f"{hour}:{minute}{ampm}"
+        return f"{hour_padded}:{minute}{ampm}"
