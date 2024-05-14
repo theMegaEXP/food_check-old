@@ -1,5 +1,7 @@
 import json
 
+from generate import Generate
+
 class Data:
     data = []
 
@@ -23,20 +25,20 @@ class Data:
     def add_data(self, retrievedData):
         self.data.append(retrievedData)
 
-    def add_dummy_data(self):
-        self.add_data({
-            'barcode': '111111111',
-            'ingredientsRaw': "Cherry, Orange, Grape",
-            'ingredients': ['cherry', 'orange', 'grape'],
-            'date': '05-14-2024',
-            'time': '1:15PM',
-        })
-        self.add_data({
-            'barcode': '222222222',
-            'ingredientsRaw': "Milk, Wheat, Egg, Soy",
-            'ingredients': ['milk', 'wheat', 'egg', 'soy'],
-            'date': '05-26-2024',
-            'time': '10:05AM',
-        })
+    def add_dummy_data(self, amount):
+        for i in range(amount):
+            barcode = Generate.barcode()
+            ingredients = Generate.ingredients()
+            date = Generate.date()
+            time = Generate.time()
+            self.add_data({
+                'id': i,
+                'barcode': barcode,
+                'ingredientsRaw': ''.join(ingredients),
+                'ingredients': ingredients,
+                'date': date,
+                'time': time,
+            })
+        
 
 

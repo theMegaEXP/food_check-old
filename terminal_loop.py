@@ -5,7 +5,7 @@ from data import Data
 from barcode_search import get_ingredients
 
 data = Data()
-data.add_dummy_data()
+data.add_dummy_data(10)
 
 def start():
     while True:
