@@ -16,8 +16,9 @@ class Data:
 
     def log_data(self):
         print("Here is the data that you have entered so far.")
-        for i in self.data[::-1]:
+        for index, i in enumerate(self.data, start=1):
             print()
+            print(str(index) + '.')
             print("barcode: " + i['barcode'])
             print("Ingredients: " + ', '.join(i['ingredients']))
             print("Date: " + i['date'])
@@ -26,6 +27,12 @@ class Data:
     def add_data(self, retrievedData):
         self.data.append(retrievedData)
 
+    def remove_data(self, index):
+        self.data.pop(index)
+
+    def delete_all_data(self):
+        self.data = []
+
     def add_dummy_data(self, amount):
         for i in range(amount):
             barcode = Generate.barcode()
@@ -33,7 +40,6 @@ class Data:
             date = Generate.date()
             time = Generate.time()
             self.add_data({
-                'id': i,
                 'barcode': barcode,
                 'ingredientsRaw': ''.join(ingredients),
                 'ingredients': ingredients,

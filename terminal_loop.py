@@ -6,7 +6,7 @@ from data import Data
 from barcode_search import get_ingredients
 
 data = Data()
-data.add_dummy_data(10)
+data.add_dummy_data(253)
 
 def start():
     while True:
@@ -26,7 +26,27 @@ def start():
                 continue
 
         elif start_input == 2:
-            data.log_data()
+            
+            while True:
+                print()
+                data.log_data()
+                print()
+                print("Type the id followed by -d [n -d] to delete a entry")
+                print("Type clear if you want to delete everything")
+                print("Press ENTER to exit")
+                secondary_input = input();
+
+                if re.search(r'\d+ -d', secondary_input):
+                    index = int(secondary_input.split(' ')[0]) - 1
+                    if index < len(data.data) and index >= 0:
+                        print(f"{data.data[index]} removed.")
+                        data.remove_data(index)
+                    else:
+                        print("The number you entered is out of range.")
+                elif secondary_input == 'clear':
+                    data.delete_all_data()
+                else:
+                    break
         
         elif start_input == 3:
             break
