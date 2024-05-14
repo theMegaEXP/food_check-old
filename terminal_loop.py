@@ -1,9 +1,11 @@
 import re
-
 from datetime import datetime
-from data import Data
 
+from data import Data
 from barcode_search import get_ingredients
+
+data = Data()
+data.add_dummy_data()
 
 def start():
     while True:
@@ -21,6 +23,9 @@ def start():
             else: 
                 print("You did not enter the specified fields. Program staring over...")
                 continue
+
+        elif start_input == 2:
+            data.log_data()
         
         elif start_input == 3:
             break
@@ -48,7 +53,7 @@ class InsertData:
         print(f"Does this look correct?\nBarcode: {barcode}\nIngredients: {ingredients}\nDate: {date}\nTime: {time}")
         print("y for yes, n for no")
 
-        Data.data.append({
+        data.add_data({
             'barcode': barcode,
             'ingredientsRaw': ingredients,
             'ingredients': ingredientsToArray(ingredients),
@@ -57,7 +62,7 @@ class InsertData:
             'datetime': format_datetime(date, time)
         })
 
-        print(Data.data)
+        print(data.data)
 
     def entry():
         print("Enter ingredients seperated by a comma and a space ', '")
@@ -107,7 +112,7 @@ class InsertData:
                 ingredients.append(added_ingr)
             
             elif ingr_input == 'done':
-                Data.data.append({
+                data.add_data({
                     'barcode': 'N/A',
                     'ingredientsRaw': ingredients_str,
                     'ingredients': ingredients,
