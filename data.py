@@ -19,7 +19,8 @@ class Data:
         for index, i in enumerate(self.data, start=1):
             print()
             print(str(index) + '.')
-            print("barcode: " + i['barcode'])
+            print("Barcode: " + i['barcode'])
+            print("Product: " + i['product'])
             print("Ingredients: " + ', '.join(i['ingredients']))
             print("Date: " + i['date'])
             print("Time: " + i['time'])
@@ -41,6 +42,7 @@ class Data:
             time = Generate.time()
             self.add_data({
                 'barcode': barcode,
+                'product': "Dummy Product",
                 'ingredientsRaw': ''.join(ingredients),
                 'ingredients': ingredients,
                 'date': date,

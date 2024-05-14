@@ -6,6 +6,8 @@ from data import Data
 from barcode_search import get_ingredients
 
 data = Data()
+data.delete_all_data()
+data.export_data()
 data.import_data()
 data.add_dummy_data(5)
 
@@ -73,11 +75,14 @@ class InsertData:
         time = input("Enter time (like this - 12:00am) [enter nothing for the current time]") or datetime.now().strftime('%I:%M%p')
         print("Time: " + time)
 
+        product = input("Product name: ")
+
         print(f"Does this look correct?\nBarcode: {barcode}\nIngredients: {ingredients}\nDate: {date}\nTime: {time}")
         print("y for yes, n for no")
 
         data.add_data({
             'barcode': barcode,
+            'product': product,
             'ingredientsRaw': ingredients,
             'ingredients': ingredients_to_array(ingredients),
             'date': date,
@@ -95,6 +100,8 @@ class InsertData:
 
         time = input("Enter time (like this - 12:00am) [enter nothing for the current time]") or datetime.now().strftime('%I:%M%p')
         print("Time: " + time)
+
+        product = input("Product name: ")
 
         
 
@@ -135,6 +142,7 @@ class InsertData:
             elif ingr_input == 'done':
                 data.add_data({
                     'barcode': 'N/A',
+                    'product': product,
                     'ingredientsRaw': ingredients_str,
                     'ingredients': ingredients,
                     'date': date,
