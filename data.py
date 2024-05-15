@@ -15,7 +15,7 @@ class Data:
 
     def log_data(self):
         print("Here is the data that you have entered so far.")
-        for index, i in enumerate(self.data, start=1):
+        for index, i in enumerate(self.data, start=1):         
             print()
             print(str(index) + '.')
             for key, value in i.items():

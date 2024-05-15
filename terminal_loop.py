@@ -35,31 +35,16 @@ def start():
                 continue
 
         elif start_input == 2:
-
             print("Press 1 to view food items submitted. Press 2 to view symptoms submitted. Press 3 to view symptom times submitted.")
             secondary_input = int(input())
 
             if secondary_input == 1:
-                while True:
-                    print()
-                    food.log_data()
-                    print()
-                    print("Type the id followed by -d [n -d] to delete a entry")
-                    print("Type clear if you want to delete everything")
-                    print("Press ENTER to exit")
-                    viewing_input = input()
-
-                    if re.search(r'\d+ -d', viewing_input):
-                        index = int(viewing_input.split(' ')[0]) - 1
-                        if index < len(food.data) and index >= 0:
-                            print(f"{food.data[index]} removed.")
-                            food.remove_data(index)
-                        else:
-                            print("The number you entered is out of range.")
-                    elif viewing_input == 'clear':
-                        food.delete_all_data()
-                    else:
-                        break
+                ViewData.foods()
+            elif secondary_input == 2:
+                ViewData.availableSymptoms()
+            else: 
+                print("You did not enter the specified fields. Program staring over...")
+                continue
             
         
         elif start_input == 3:
@@ -185,8 +170,44 @@ class InsertData:
                 break
 
             elif symp_input == '':
-                symptomsAvailable.add_data(symptom)
+                symptomsAvailable.add_data({
+                    'symptom': symptom,
+                })
                 break
             else:
                 print("You did not enter a value correctly")
                 continue     
+
+
+class ViewData:
+    def basicView(type):
+        while True:
+            print()
+            type.log_data()
+            print()
+            print("Type the id followed by -d [n -d] to delete a entry")
+            print("Type clear if you want to delete everything")
+            print("Press ENTER to exit")
+            viewing_input = input()
+
+            if re.search(r'\d+ -d', viewing_input):
+                index = int(viewing_input.split(' ')[0]) - 1
+                if index < len(type.data) and index >= 0:
+                    print(f"{type.data[index]} removed.")
+                    type.remove_data(index)
+                else:
+                    print("The number you entered is out of range.")
+            elif viewing_input == 'clear':
+                type.delete_all_data()
+            elif viewing_input == '':
+                break
+            else:
+                print("You did not enter a correct value.")
+                continue
+                
+    def foods():
+       ViewData.basicView(food)
+
+    def availableSymptoms():
+        ViewData.basicView(symptomsAvailable)
+
