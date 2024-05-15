@@ -5,8 +5,7 @@ from helpers import format_datetime, ingredients_to_array
 from data import Foods, SymptomTimes, SymptomsAvailable, Data
 from barcode_search import get_ingredients
 
-data = Data()
-data.import_data()
+Data.import_data()
 
 foods = Foods()
 foods.retrieve_data()
@@ -58,7 +57,7 @@ def start():
             foods.send_data()
             symptomsAvailable.send_data()
             symptoms.send_data()
-            data.export_data()
+            Data.export_data()
             print("Data saved and app exited.")
             break
         

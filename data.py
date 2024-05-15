@@ -4,28 +4,26 @@ from generate import Generate
 from helpers import format_datetime
 
 class Data:
-    def __init__(self):
-        self.data_all = {
-            'foods': [],
-            'symptomsAvailable': [],
-            'symptomTimes': [],
-        }
+    data_all = {
+        'foods': [],
+        'symptomsAvailable': [],
+        'symptomTimes': [],
+    }
     
 
-    def import_data(self):
+    def import_data():
         with open('data.json', 'r') as f:
-            self.data_all = json.load(f)
-            print(self.data_all)
+            Data.data_all = json.load(f)
+            print(Data.data_all)
 
-    def export_data(self):
+    def export_data():
         with open('data.json', 'w') as f:
-            json.dump(self.data_all, f)   
+            json.dump(Data.data_all, f)   
 
     def retrieve_data(self):
         class_name = self.__class__.__name__
         json_name = class_name[0].lower() + class_name[1:]
-        print(self.data_all[json_name])
-        self.data = self.data_all[json_name]
+        self.data = Data.data_all[json_name]
 
     def send_data(self):
         class_name = self.__class__.__name__
