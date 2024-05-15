@@ -21,7 +21,7 @@ def start():
         start_input = int(input())
 
         if start_input == 1:
-            print("Press 1 to search with a barcode. Press 2 to manually enter ingredients. Press 3 to add a symptom you are having.")
+            print("Press 1 to search with a barcode. Press 2 to manually enter ingredients. Press 3 to add a symptom you are having. Press 4 to enter when you have a symptom.")
             secondary_input = int(input())
 
             if (secondary_input == 1):
@@ -35,26 +35,32 @@ def start():
                 continue
 
         elif start_input == 2:
-            while True:
-                print()
-                food.log_data()
-                print()
-                print("Type the id followed by -d [n -d] to delete a entry")
-                print("Type clear if you want to delete everything")
-                print("Press ENTER to exit")
-                secondary_input = input()
 
-                if re.search(r'\d+ -d', secondary_input):
-                    index = int(secondary_input.split(' ')[0]) - 1
-                    if index < len(food.data) and index >= 0:
-                        print(f"{food.data[index]} removed.")
-                        food.remove_data(index)
+            print("Press 1 to view food items submitted. Press 2 to view symptoms submitted. Press 3 to view symptom times submitted.")
+            secondary_input = int(input())
+
+            if secondary_input == 1:
+                while True:
+                    print()
+                    food.log_data()
+                    print()
+                    print("Type the id followed by -d [n -d] to delete a entry")
+                    print("Type clear if you want to delete everything")
+                    print("Press ENTER to exit")
+                    viewing_input = input()
+
+                    if re.search(r'\d+ -d', viewing_input):
+                        index = int(viewing_input.split(' ')[0]) - 1
+                        if index < len(food.data) and index >= 0:
+                            print(f"{food.data[index]} removed.")
+                            food.remove_data(index)
+                        else:
+                            print("The number you entered is out of range.")
+                    elif viewing_input == 'clear':
+                        food.delete_all_data()
                     else:
-                        print("The number you entered is out of range.")
-                elif secondary_input == 'clear':
-                    food.delete_all_data()
-                else:
-                    break
+                        break
+            
         
         elif start_input == 3:
             food.export_data()
@@ -184,7 +190,3 @@ class InsertData:
             else:
                 print("You did not enter a value correctly")
                 continue     
-
-
-    
-    
