@@ -4,7 +4,6 @@ from generate import Generate
 from helpers import format_datetime
 
 class Data:
-    data = []
 
     def import_data(self):
         with open('data.json', 'r') as f:
@@ -19,11 +18,9 @@ class Data:
         for index, i in enumerate(self.data, start=1):
             print()
             print(str(index) + '.')
-            print("Barcode: " + i['barcode'])
-            print("Product: " + i['product'])
-            print("Ingredients: " + ', '.join(i['ingredients']))
-            print("Date: " + i['date'])
-            print("Time: " + i['time'])
+            for key, value in i.items():
+                value = value if not isinstance(value, list) else ', '.join(value)
+                print(f"{key.title()}: {value}")
 
     def add_data(self, retrievedData):
         self.data.append(retrievedData)
@@ -32,6 +29,13 @@ class Data:
         self.data.pop(index)
 
     def delete_all_data(self):
+        self.data = []
+
+    
+        
+
+class Food(Data):
+    def __init__(self):
         self.data = []
 
     def add_dummy_data(self, amount):
@@ -48,6 +52,8 @@ class Data:
                 'date': date,
                 'time': time,
             })
+
+class Symptoms(Data):
+    def __init__(self):
+        self.data = []
         
-
-

@@ -6,7 +6,7 @@ class Generate:
         return ''.join([str(random.randint(0, 9)) for _ in range(12)])
     
     def ingredients():
-        ingredients = ['apple', 'banana', 'cherry', 'grape', 'orange', 'pear', 'tangerine', 'mango', 'watermelon', 'cantalope', 'honeydew', 'strawberry', 'blackberry', 'raspberry', 'blueberry', 'carrot', 'celary', 'brocoli', 'cabbage', 'onion', 'tomato', 'bell pepper', 'jalepenio']
+        ingredients = ['apple', 'banana', 'cherry', 'grape', 'orange', 'pear', 'tangerine', 'mango', 'watermelon', 'cantalope', 'honeydew', 'strawberry', 'blackberry', 'raspberr', 'blueberry', 'carrot', 'celary', 'brocoli', 'cabbage', 'onion', 'tomato', 'bell pepper', 'jalepenio']
         length = random.randint(3, 20)
         return [ingredients[random.randint(0, len(ingredients) - 1)] for _ in range(length)]
     

@@ -2,14 +2,14 @@ import re
 from datetime import datetime
 
 from helpers import format_datetime, ingredients_to_array
-from data import Data
+from data import Food
 from barcode_search import get_ingredients
 
-data = Data()
-data.delete_all_data()
-data.export_data()
-data.import_data()
-data.add_dummy_data(5)
+food = Food()
+food.delete_all_data()
+food.export_data()
+food.import_data()
+food.add_dummy_data(5)
 
 def start():
     while True:
@@ -31,7 +31,7 @@ def start():
         elif start_input == 2:
             while True:
                 print()
-                data.log_data()
+                food.log_data()
                 print()
                 print("Type the id followed by -d [n -d] to delete a entry")
                 print("Type clear if you want to delete everything")
@@ -40,18 +40,18 @@ def start():
 
                 if re.search(r'\d+ -d', secondary_input):
                     index = int(secondary_input.split(' ')[0]) - 1
-                    if index < len(data.data) and index >= 0:
-                        print(f"{data.data[index]} removed.")
-                        data.remove_data(index)
+                    if index < len(food.data) and index >= 0:
+                        print(f"{food.data[index]} removed.")
+                        food.remove_data(index)
                     else:
                         print("The number you entered is out of range.")
                 elif secondary_input == 'clear':
-                    data.delete_all_data()
+                    food.delete_all_data()
                 else:
                     break
         
         elif start_input == 3:
-            data.export_data()
+            food.export_data()
             print("Data saved and app exited.")
             break
         
@@ -79,7 +79,7 @@ class InsertData:
             print(f"Does this look correct?\nBarcode: {barcode}\nIngredients: {ingredients}\nDate: {date}\nTime: {time}")
             print("y for yes, n for no")
 
-            data.add_data({
+            food.add_data({
                 'barcode': barcode,
                 'product': product,
                 'ingredientsRaw': ingredients,
@@ -140,7 +140,7 @@ class InsertData:
                 ingredients.append(added_ingr)
             
             elif ingr_input == 'done':
-                data.add_data({
+                food.add_data({
                     'barcode': 'N/A',
                     'product': product,
                     'ingredientsRaw': ingredients_str,
