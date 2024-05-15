@@ -68,27 +68,27 @@ class InsertData:
         else:
             print("Ingredients: " + ingredients)
 
+            date = input("Enter date (MM-DD-YYYY) [enter nothing for today's date]: ") or datetime.today().strftime('%m-%d-%Y')
+            print("Date: " + date)
+
+            time = input("Enter time (like this - 12:00am) [enter nothing for the current time]") or datetime.now().strftime('%I:%M%p')
+            print("Time: " + time)
+
+            product = input("Product name: ")
+
+            print(f"Does this look correct?\nBarcode: {barcode}\nIngredients: {ingredients}\nDate: {date}\nTime: {time}")
+            print("y for yes, n for no")
+
+            data.add_data({
+                'barcode': barcode,
+                'product': product,
+                'ingredientsRaw': ingredients,
+                'ingredients': ingredients_to_array(ingredients),
+                'date': date,
+                'time': time,
+                'datetime': format_datetime(date, time)
+            })
         
-        date = input("Enter date (MM-DD-YYYY) [enter nothing for today's date]: ") or datetime.today().strftime('%m-%d-%Y')
-        print("Date: " + date)
-
-        time = input("Enter time (like this - 12:00am) [enter nothing for the current time]") or datetime.now().strftime('%I:%M%p')
-        print("Time: " + time)
-
-        product = input("Product name: ")
-
-        print(f"Does this look correct?\nBarcode: {barcode}\nIngredients: {ingredients}\nDate: {date}\nTime: {time}")
-        print("y for yes, n for no")
-
-        data.add_data({
-            'barcode': barcode,
-            'product': product,
-            'ingredientsRaw': ingredients,
-            'ingredients': ingredients_to_array(ingredients),
-            'date': date,
-            'time': time,
-            'datetime': format_datetime(date, time)
-        })
 
     def entry():
         print("Enter ingredients seperated by a comma and a space ', '")
