@@ -61,4 +61,10 @@ class SymptomTimes(Data):
 class SymptomsAvailable(Data):
     def __init__(self):
         self.data = []
+
+    def add_dummy_data(self, amount):
+        for i in range(amount):
+            self.add_data({
+                'symptom': Generate.symptom()
+            })
         

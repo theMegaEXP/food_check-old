@@ -12,8 +12,10 @@ food.import_data()
 food.add_dummy_data(5)
 
 symptomsAvailable = SymptomsAvailable()
+symptomsAvailable.add_dummy_data(5)
 
 symptoms = SymptomTimes()
+
 
 def start():
     while True:

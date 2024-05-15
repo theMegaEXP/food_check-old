@@ -19,3 +19,7 @@ class Generate:
         minute = str(random.randint(1, 12) * 5)
         ampm = 'AM' if random.randint(0, 1) == 0 else 'PM'
         return f"{hour_padded}:{minute}{ampm}"
+    
+    def symptom():
+        symptoms = ['headache', 'stomach pain', 'swelling', 'hives', 'vomiting', 'nausia']
+        return symptoms[random.randint(0, len(symptoms)-1)]
