@@ -4,21 +4,28 @@ from generate import Generate
 from helpers import format_datetime
 
 class Data:
-
-    data_all = {}
+    def __init__(self):
+        self.data_all = {
+            'foods': [],
+            'symptomsAvailable': [],
+            'symptomTimes': [],
+        }
+    
 
     def import_data(self):
         with open('data.json', 'r') as f:
-            self.dataAll = json.load(f)
+            self.data_all = json.load(f)
+            print(self.data_all)
 
     def export_data(self):
         with open('data.json', 'w') as f:
-            json.dump(self.dataAll, f)   
+            json.dump(self.data_all, f)   
 
     def retrieve_data(self):
         class_name = self.__class__.__name__
         json_name = class_name[0].lower() + class_name[1:]
-        self.data = self.dataAll[json_name]
+        print(self.data_all[json_name])
+        self.data = self.data_all[json_name]
 
     def send_data(self):
         class_name = self.__class__.__name__
@@ -46,9 +53,12 @@ class Data:
     
         
 
-class Food(Data):
+class Foods(Data):
     def __init__(self):
+        super().__init__()
         self.data = []
+        self.retrieve_data()
+        self.send_data()
 
     def add_dummy_data(self, amount):
         for i in range(amount):
@@ -67,12 +77,18 @@ class Food(Data):
 
 class SymptomTimes(Data):
     def __init__(self):
+        super().__init__()
         self.data = []
+        self.retrieve_data()
+        self.send_data()
 
 
 class SymptomsAvailable(Data):
     def __init__(self):
+        super().__init__()
         self.data = []
+        self.retrieve_data()
+        self.send_data()
 
     def add_dummy_data(self, amount):
         for i in range(amount):

@@ -2,19 +2,17 @@ import re
 from datetime import datetime
 
 from helpers import format_datetime, ingredients_to_array
-from data import Food, SymptomTimes, SymptomsAvailable, Data
+from data import Foods, SymptomTimes, SymptomsAvailable, Data
 from barcode_search import get_ingredients
 
 data = Data()
 data.import_data()
 
-food = Food()
-food.retrieve_data()
-food.add_dummy_data(5)
+foods = Foods()
+foods.retrieve_data()
 
 symptomsAvailable = SymptomsAvailable()
 symptomsAvailable.retrieve_data()
-symptomsAvailable.add_dummy_data(5)
 
 symptoms = SymptomTimes()
 symptoms.retrieve_data()
@@ -57,7 +55,10 @@ def start():
             
         
         elif start_input == 3:
-            food.export_data()
+            foods.send_data()
+            symptomsAvailable.send_data()
+            symptoms.send_data()
+            data.export_data()
             print("Data saved and app exited.")
             break
         
@@ -90,7 +91,7 @@ class InsertData:
             print(f"Does this look correct?\nBarcode: {barcode}\nIngredients: {ingredients}\nDate: {date}\nTime: {time}")
             print("y for yes, n for no")
 
-            food.add_data({
+            foods.add_data({
                 'barcode': barcode,
                 'product': product,
                 'ingredientsRaw': ingredients,
@@ -145,7 +146,7 @@ class InsertData:
                 ingredients.append(added_ingr)
             
             elif ingr_input == 'done':
-                food.add_data({
+                foods.add_data({
                     'barcode': 'N/A',
                     'product': product,
                     'ingredientsRaw': ingredients_str,
@@ -241,7 +242,7 @@ class ViewData:
                 continue
                 
     def foods():
-       ViewData.basicView(food)
+       ViewData.basicView(foods)
 
     def availableSymptoms():
         ViewData.basicView(symptomsAvailable)
