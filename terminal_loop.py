@@ -26,12 +26,14 @@ def start():
             print("Press 1 to search with a barcode. Press 2 to manually enter ingredients. Press 3 to add a symptom you are having. Press 4 to enter when you have a symptom.")
             secondary_input = int(input())
 
-            if (secondary_input == 1):
+            if secondary_input == 1:
                 InsertData.barcode()
-            elif (secondary_input == 2):
+            elif secondary_input == 2:
                 InsertData.entry()
-            elif (secondary_input == 3):
+            elif secondary_input == 3:
                 InsertData.available_symptom()
+            elif secondary_input == 4:
+                InsertData.symptom()
             else: 
                 print("You did not enter the specified fields. Program staring over...")
                 continue
@@ -44,6 +46,8 @@ def start():
                 ViewData.foods()
             elif secondary_input == 2:
                 ViewData.availableSymptoms()
+            elif secondary_input == 3:
+                ViewData.symptoms()
             else: 
                 print("You did not enter the specified fields. Program staring over...")
                 continue
@@ -180,7 +184,32 @@ class InsertData:
             else:
                 print("You did not enter a value correctly")
                 continue     
-
+    
+    def symptom():
+        while True:
+            symptom = input("Enter an exising symptom you are experiencing: ")
+            if symptom == 'exit':
+                break
+            elif any(d.get('symptom') == symptom for d in symptomsAvailable.data):
+                date, time = InsertData.datetime()
+                print()
+                print(f"Does this look correct?\nSymptom: {symptom}\nDate: {date}\nTime: {time}")
+                yesno_input = input("Enter 'yes' or 'no': ")
+                if yesno_input == 'yes':
+                    symptoms.add_data({
+                        'symptom': symptom,
+                        'date': date,
+                        'time': time,
+                        'datetime': format_datetime(date, time)
+                    })
+                    print()
+                    print("Data submitted")
+                    break
+                else:
+                    continue
+            else:
+                print("That symptom does not exist. Please add it first.")
+                continue
 
 class ViewData:
     def basicView(type):
@@ -214,3 +243,5 @@ class ViewData:
     def availableSymptoms():
         ViewData.basicView(symptomsAvailable)
 
+    def symptoms():
+        ViewData.basicView(symptoms)
