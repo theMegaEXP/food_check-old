@@ -5,13 +5,25 @@ from helpers import format_datetime
 
 class Data:
 
+    data_all = {}
+
     def import_data(self):
         with open('data.json', 'r') as f:
-            self.data = json.load(f)
+            self.dataAll = json.load(f)
 
     def export_data(self):
         with open('data.json', 'w') as f:
-            json.dump(self.data, f)    
+            json.dump(self.dataAll, f)   
+
+    def retrieve_data(self):
+        class_name = self.__class__.__name__
+        json_name = class_name[0].lower() + class_name[1:]
+        self.data = self.dataAll[json_name]
+
+    def send_data(self):
+        class_name = self.__class__.__name__
+        json_name = class_name[0].lower() + class_name[1:]
+        self.data_all[json_name] = self.data
 
     def log_data(self):
         print("Here is the data that you have entered so far.")

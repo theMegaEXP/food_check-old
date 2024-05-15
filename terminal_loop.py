@@ -2,19 +2,22 @@ import re
 from datetime import datetime
 
 from helpers import format_datetime, ingredients_to_array
-from data import Food, SymptomTimes, SymptomsAvailable
+from data import Food, SymptomTimes, SymptomsAvailable, Data
 from barcode_search import get_ingredients
 
+data = Data()
+data.import_data()
+
 food = Food()
-food.delete_all_data()
-food.export_data()
-food.import_data()
+food.retrieve_data()
 food.add_dummy_data(5)
 
 symptomsAvailable = SymptomsAvailable()
+symptomsAvailable.retrieve_data()
 symptomsAvailable.add_dummy_data(5)
 
 symptoms = SymptomTimes()
+symptoms.retrieve_data()
 
 
 def start():
