@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 
 from helpers import format_datetime, ingredients_to_array
-from data import Food
+from data import Food, SymptomTimes, SymptomsAvailable
 from barcode_search import get_ingredients
 
 food = Food()
@@ -11,19 +11,25 @@ food.export_data()
 food.import_data()
 food.add_dummy_data(5)
 
+symptomsAvailable = SymptomsAvailable()
+
+symptoms = SymptomTimes()
+
 def start():
     while True:
         print("Press 1 to enter data. Press 2 to view data. Press 3 to exit.")
         start_input = int(input())
 
         if start_input == 1:
-            print("Press 1 to search with a barcode. Press 2 to manually enter ingredients")
+            print("Press 1 to search with a barcode. Press 2 to manually enter ingredients. Press 3 to add a symptom you are having.")
             secondary_input = int(input())
 
             if (secondary_input == 1):
                 InsertData.barcode()
             elif (secondary_input == 2):
                 InsertData.entry()
+            elif (secondary_input == 3):
+                InsertData.available_symptom()
             else: 
                 print("You did not enter the specified fields. Program staring over...")
                 continue
@@ -36,7 +42,7 @@ def start():
                 print("Type the id followed by -d [n -d] to delete a entry")
                 print("Type clear if you want to delete everything")
                 print("Press ENTER to exit")
-                secondary_input = input();
+                secondary_input = input()
 
                 if re.search(r'\d+ -d', secondary_input):
                     index = int(secondary_input.split(' ')[0]) - 1
@@ -103,8 +109,6 @@ class InsertData:
 
         product = input("Product name: ")
 
-        
-
         while True:
             print()
             print("Do all of the ingredietns look correct?")
@@ -158,7 +162,28 @@ class InsertData:
                 continue
     
 
+    def available_symptom():
+        symptom = input("Enter a symptom you are having: ")
 
+        while True:
+            print()
+            print("Type 'edit' to edit the symptom.")
+            print("Type 'exit' to exit without saving this symptom.")
+            print("Press ENTER to save this symptom")
+            symp_input = input()
+
+            if symp_input == 'edit':
+                symptom = input("Enter a symptom you are having: ")
+            
+            elif symp_input == 'exit':
+                break
+
+            elif symp_input == '':
+                symptomsAvailable.add_data(symptom)
+                break
+            else:
+                print("You did not enter a value correctly")
+                continue     
 
 
     

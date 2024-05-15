@@ -53,7 +53,12 @@ class Food(Data):
                 'time': time,
             })
 
-class Symptoms(Data):
+class SymptomTimes(Data):
+    def __init__(self):
+        self.data = []
+
+
+class SymptomsAvailable(Data):
     def __init__(self):
         self.data = []
         
