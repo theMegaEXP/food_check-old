@@ -56,6 +56,15 @@ def start():
             continue
 
 class InsertData:
+    def datetime():
+        date = input("Enter date (MM-DD-YYYY) [enter nothing for today's date]: ") or datetime.today().strftime('%m-%d-%Y')
+        print("Date: " + date)
+
+        time = input("Enter time (like this - 12:00am) [enter nothing for the current time]") or datetime.now().strftime('%I:%M%p')
+        print("Time: " + time)
+
+        return date, time
+
     def barcode():
         barcode = input("Enter the barcode: ")
         ingredients = get_ingredients(barcode)
@@ -65,11 +74,7 @@ class InsertData:
         else:
             print("Ingredients: " + ingredients)
 
-            date = input("Enter date (MM-DD-YYYY) [enter nothing for today's date]: ") or datetime.today().strftime('%m-%d-%Y')
-            print("Date: " + date)
-
-            time = input("Enter time (like this - 12:00am) [enter nothing for the current time]") or datetime.now().strftime('%I:%M%p')
-            print("Time: " + time)
+            date, time = InsertData.datetime()
 
             product = input("Product name: ")
 
@@ -92,11 +97,7 @@ class InsertData:
         ingredients_str = input()
         ingredients = [elem.lower() for elem in ingredients_str.split(', ')]
 
-        date = input("Enter date (MM-DD-YYYY) [enter nothing for today's date]: ") or datetime.today().strftime('%m-%d-%Y')
-        print("Date: " + date)
-
-        time = input("Enter time (like this - 12:00am) [enter nothing for the current time]") or datetime.now().strftime('%I:%M%p')
-        print("Time: " + time)
+        date, time = InsertData.datetime()
 
         product = input("Product name: ")
 
