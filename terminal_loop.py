@@ -109,6 +109,9 @@ class InsertData:
         date, time = InsertData.datetime()
 
         product = input("Product name: ")
+        
+        print("Entering a barcode will allow you to reference that barcode to keep ingredients the same.")
+        barcode = input("Barcode: ")
 
         while True:
             print()
@@ -131,7 +134,7 @@ class InsertData:
                     ingredients[index] = input(f"Raneme {ingredients[index]} to: ")
                 else:
                     print("The number you entered is out of range.")
-            
+             
             elif re.search(r'\d+ -d', ingr_input):
                 index = int(ingr_input.split(' ')[0]) - 1
                 if index < len(ingredients) and index >= 0:
@@ -146,7 +149,7 @@ class InsertData:
             
             elif ingr_input == 'done':
                 foods.add_data({
-                    'barcode': 'N/A',
+                    'barcode': barcode,
                     'product': product,
                     'ingredientsRaw': ingredients_str,
                     'ingredients': ingredients,

@@ -13,7 +13,6 @@ class Data:
     def import_data():
         with open('data.json', 'r') as f:
             Data.data_all = json.load(f)
-            print(Data.data_all)
 
     def export_data():
         with open('data.json', 'w') as f:
