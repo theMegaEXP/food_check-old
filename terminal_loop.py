@@ -210,8 +210,8 @@ class InsertData:
                 print()
                 Print.bold("Does this look correct?")
                 Print.key_value("Symptom: ", symptom)
-                Print.key_value("Date: ", date)
-                Print.key_value("Time: ", time)
+                Print.key_value("Date", date)
+                Print.key_value("Time", time)
                 yesno_input = input("Enter 'yes' or 'no': ")
                 if yesno_input == 'yes':
                     symptoms.add_data({
