@@ -13,6 +13,23 @@ class Validate:
                 Print.red("This barcode is not a number.")
             else:
                 return barcode_input
+
+    def product():
+        product_input = input("Product name: ")
+        return product_input    
+
+    def ingredients():
+        while True:
+            ingredients_input = input("Ingredients: ")
+            ingredients = [elem.lower() for elem in ingredients_input.split(', ')]   
+
+            if len(ingredients) == 1 and len(ingredients[0]) == 0:
+                Print.red("You did not enter any ingredients.")
+            elif len(ingredients) == 1 and len(ingredients[0]) > 20:
+                Print.red("It looks like you didn't seperate your values correctly.")
+            else:
+                return ingredients, ingredients_input
+    
     def date():
         date_format = '%m-%d-%Y'
         while True:
@@ -29,18 +46,13 @@ class Validate:
             except ValueError:
                 Print.red("The date entered is invalid.")
 
-        
     def time():
         time_format = '%I:%M%p'
         while True:
-            time_input = input("Enter time (like this - 02:05AM) [enter nothing for the current time]: ") or datetime.now().strftime(time_format)
+            time_input = input("Enter time (like this - 2:05AM) [enter nothing for the current time]: ") or datetime.now().strftime(time_format)
             
             try:
                 formatted =  datetime.strptime(time_input, time_format)
                 return formatted.strftime(time_format)
             except ValueError:
                 Print.red("The time entered is not valid.")
-
-    def product():
-        product_input = input("Product name: ")
-        return product_input

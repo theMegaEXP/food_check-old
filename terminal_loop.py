@@ -110,8 +110,7 @@ class InsertData:
 
     def entry():
         Print.bold("Enter ingredients seperated by a comma and a space ', '")
-        ingredients_str = input()
-        ingredients = [elem.lower() for elem in ingredients_str.split(', ')]
+        ingredients, ingredients_raw = Validate.ingredients()
 
         date, time = InsertData.datetime()
 
@@ -160,7 +159,7 @@ class InsertData:
                 foods.add_data({
                     'barcode': barcode,
                     'product': product,
-                    'ingredientsRaw': ingredients_str,
+                    'ingredientsRaw': ingredients_raw,
                     'ingredients': ingredients,
                     'date': date,
                     'time': time,
