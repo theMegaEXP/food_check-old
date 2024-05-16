@@ -1,5 +1,48 @@
 {
-    "foods": [],
-    "availableSymptoms": [],
-    "symptomTimes": []
+    "foods": [
+        {
+            "barcode": "123456789000",
+            "product": "Product Name 1",
+            "ingredientsRaw": "Milk, Soy, Egg, Wheat",
+            "ingredients": ["milk", "soy", "egg", "wheat"],
+            "date": "05-16-2024",
+            "time": "01:35PM",
+            "datetime": "2024-05-16 13:35:00"
+        },
+        {
+            "barcode": "N/A",
+            "product": "N/A",
+            "ingredientsRaw": "Banana",
+            "ingredients": ["banana"],
+            "date": "05-17-2024",
+            "time": "11:05AM",
+            "datetime": "2024-05-16 13:35:00"
+        }
+    ],
+    "availableSymptoms": [
+        {
+            "symptom": "Headache"
+        },
+        {
+            "symptom": "Stomach Pain"
+        },
+        {
+            "symptom": "Nausia"
+        }
+    ],
+    "symptomTimes": [
+        {
+            "symptom": "Headache",
+            "date": "05-16-2024",
+            "time": "03:45PM",
+            "datetime": "2024-05-16 15:45:00"
+        },
+        {
+            "symptom": "Nausia",
+            "date": "05-17-2024",
+            "time": "12:10PM",
+            "datetime": "2024-05-17 12:10:00"
+        }
+    ],
+    "calculations": []
 }
