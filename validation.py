@@ -13,7 +13,7 @@ class Validate:
             else:
                 return int(int_input)
             
-    def confirmation(ask):
+    def confirmation(ask = ''):
         while True:
             confirm_input = input(f"{ask} ('yes'/'no'): ")
             if confirm_input == 'yes':

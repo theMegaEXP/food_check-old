@@ -210,12 +210,10 @@ class InsertData:
             elif any(d.get('symptom') == symptom for d in symptomsAvailable.data):
                 date, time = InsertData.datetime()
                 print()
-                Print.bold("Does this look correct?")
                 Print.key_value("Symptom: ", symptom)
                 Print.key_value("Date", date)
                 Print.key_value("Time", time)
-                yesno_input = input("Enter 'yes' or 'no': ")
-                if yesno_input == 'yes':
+                if Validate.confirmation("Does the information above look correct?"):
                     symptoms.add_data({
                         'symptom': symptom,
                         'date': date,
@@ -245,7 +243,7 @@ class ViewData:
             if re.search(r'\d+ -d', viewing_input):
                 index = int(viewing_input.split(' ')[0]) - 1
                 if index < len(type.data) and index >= 0:
-                    Print.green(f"{type.data[index]['ingredients']} removed.")
+                    Print.green(f"{type.data[index]} removed.")
                     type.remove_data(index)
                 else:
                     Print.red("The number you entered is out of range.")
