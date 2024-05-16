@@ -6,7 +6,7 @@ from data import Foods
 
 def get_ingredients(barcode):
     if Foods.check_barcode(barcode):
-        return ', '.join(Foods.ingredients_from_barcode(barcode))
+        return Foods.ingredients_from_barcode(barcode)
     else:
         url = 'https://api.nal.usda.gov/fdc/v1/foods/search'
         params = {

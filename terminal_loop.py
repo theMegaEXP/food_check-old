@@ -22,11 +22,11 @@ symptoms.retrieve_data()
 def start():
     while True:
         Print.underline("Press 1 to enter data. Press 2 to view data. Press 3 to exit.")
-        start_input = int(input())
+        start_input = Validate.integer(1, 3)
 
         if start_input == 1:
             Print.underline("Press 1 to search with a barcode. Press 2 to manually enter ingredients. Press 3 to add a symptom you are having. Press 4 to enter when you have a symptom.")
-            secondary_input = int(input())
+            secondary_input = Validate.integer(1, 4)
 
             if secondary_input == 1:
                 InsertData.barcode()
@@ -42,7 +42,7 @@ def start():
 
         elif start_input == 2:
             Print.underline("Press 1 to view food items submitted. Press 2 to view symptoms submitted. Press 3 to view symptom times submitted.")
-            secondary_input = int(input())
+            secondary_input = Validate.integer(1, 3)
 
             if secondary_input == 1:
                 ViewData.foods()

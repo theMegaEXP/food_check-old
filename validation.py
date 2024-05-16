@@ -3,6 +3,16 @@ from datetime import datetime
 from print import Print
 
 class Validate:
+    def integer(num_start, num_end):
+        while True:
+            int_input = input("Command: ")
+            if not int_input.isdigit():
+                Print.red("You must enter a number here.")
+            elif int(int_input) < num_start or int(int_input) > num_end:
+                Print.red("The number you entered does not have a coresponding command.")
+            else:
+                return int(int_input)
+    
     def barcode(allow_blank):
         while True:
             barcode_input = input("Barcode: ")
