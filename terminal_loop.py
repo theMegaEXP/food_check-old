@@ -251,7 +251,7 @@ class ViewData:
                     Print.red("The number you entered is out of range.")
             elif viewing_input == 'clear':
                 type.delete_all_data()
-                print.green("Data cleared.")
+                Print.green("Data cleared.")
             elif viewing_input == '':
                 break
             else:
