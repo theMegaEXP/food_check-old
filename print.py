@@ -31,13 +31,5 @@ class Print:
     def key_value(key, value):
         print(f"\033[1m{key}\033[0m: {value}")
 
-Print.red("Hello there")
-Print.orange("Hello there")
-Print.yellow("Hello there")
-Print.green("Hello there")
-Print.blue("Hello there")
-Print.purple("Hello there")
-Print.bold("This text is bold")
-Print.key_value("This is a key", "This is a value")
-Print.underline("This is underlined")
-Print.underline_bold("This is underlined and bold!!!")
+    def number_value(num, value):
+        print(f"\033[1m{num}\033[0m. {value}")

@@ -2,6 +2,7 @@ import json
 
 from generate import Generate
 from helpers import format_datetime
+from print import Print
 
 class Data:
     data_all = {
@@ -29,13 +30,13 @@ class Data:
         self.data_all[json_name] = self.data
 
     def log_data(self):
-        print("Here is the data that you have entered so far.")
+        Print.underline_bold("Here is the data that you have entered so far.")
         for index, i in enumerate(self.data, start=1):         
             print()
-            print(str(index) + '.')
+            Print.bold(str(index) + '.')
             for key, value in i.items():
                 value = value if not isinstance(value, list) else ', '.join(value)
-                print(f"{key.title()}: {value}")
+                Print.key_value(key.title(), value)
 
     def add_data(self, retrievedData):
         self.data.append(retrievedData)
