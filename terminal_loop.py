@@ -78,7 +78,7 @@ class InsertData:
         return date, time
 
     def barcode():
-        barcode = Validate.barcode()
+        barcode = Validate.barcode(False)
         ingredients = get_ingredients(barcode)
 
         if ingredients == False or len(barcode) != 12:
@@ -88,6 +88,7 @@ class InsertData:
 
             date, time = InsertData.datetime()
 
+            print("Enter a product name. You can leave this field blank.")
             product = Validate.product()
 
             print()
@@ -114,10 +115,12 @@ class InsertData:
 
         date, time = InsertData.datetime()
 
+        print("Enter a product name. You can leave this field blank.")
         product = Validate.product()
         
         print("Entering a barcode will allow you to reference that barcode to keep ingredients the same.")
-        barcode = Validate.barcode()
+        print("Leave the barcode blank if you don't want to specify a barcode")
+        barcode = Validate.barcode(True)
 
 
 

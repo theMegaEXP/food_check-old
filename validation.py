@@ -3,10 +3,12 @@ from datetime import datetime
 from print import Print
 
 class Validate:
-    def barcode():
+    def barcode(allow_blank):
         while True:
             barcode_input = input("Barcode: ")
 
+            if barcode_input == '' and allow_blank:
+                return 'N/A'
             if len(barcode_input) != 12:
                 Print.red("This barcode is invalid since it is not 12 digits")
             elif not barcode_input.isdigit():
@@ -16,6 +18,8 @@ class Validate:
 
     def product():
         product_input = input("Product name: ")
+        if product_input == '':
+            return 'N/A'
         return product_input    
 
     def ingredients():
