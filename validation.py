@@ -12,6 +12,14 @@ class Validate:
                 Print.red("The number you entered does not have a coresponding command.")
             else:
                 return int(int_input)
+            
+    def confirmation(ask):
+        while True:
+            confirm_input = input(f"{ask} ('yes'/'no'): ")
+            if confirm_input == 'yes':
+                return True
+            elif confirm_input == 'no':
+                return False
     
     def barcode(allow_blank):
         while True:
