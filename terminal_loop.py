@@ -5,6 +5,7 @@ from helpers import format_datetime, ingredients_to_array
 from data import Foods, SymptomTimes, SymptomsAvailable, Data
 from barcode_search import get_ingredients
 from print import Print
+from validation import Validate
 
 Data.import_data()
 
@@ -67,29 +68,30 @@ def start():
 
 class InsertData:
     def datetime():
-        date = input("Enter date (MM-DD-YYYY) [enter nothing for today's date]: ") or datetime.today().strftime('%m-%d-%Y')
+        date = Validate.date()
         Print.key_value("Date: ", date)
 
-        time = input("Enter time (like this - 12:00am) [enter nothing for the current time]") or datetime.now().strftime('%I:%M%p')
+        time = Validate.time()
         Print.key_value("Time: ", time)
+        
 
         return date, time
 
     def barcode():
-        barcode = input("Enter the barcode: ")
+        barcode = Validate.barcode()
         ingredients = get_ingredients(barcode)
 
-        if ingredients == False or len(barcode) < 12 or len(barcode) > 14:
+        if ingredients == False or len(barcode) != 12:
             Print.red("Unable to retreive ingredients based on barcode data")
         else:
             Print.key_value("Ingredients: ", ingredients)
 
             date, time = InsertData.datetime()
 
-            product = input("Product name: ")
+            product = Validate.product()
 
             print()
-            print("Doe this look correct?")
+            print("Does this look correct?")
             Print.key_value("Barcode: ", barcode)
             Print.key_value("Ingredients: ", ingredients)
             Print.key_value("Date: ", date)
@@ -113,10 +115,12 @@ class InsertData:
 
         date, time = InsertData.datetime()
 
-        product = input("Product name: ")
+        product = Validate.product()
         
         print("Entering a barcode will allow you to reference that barcode to keep ingredients the same.")
-        barcode = input("Barcode: ")
+        barcode = Validate.barcode()
+
+
 
         while True:
             print()
