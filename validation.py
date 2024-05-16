@@ -16,7 +16,7 @@ class Validate:
     def date():
         date_format = '%m-%d-%Y'
         while True:
-            date_input = input("Enter date (MM-DD-YYYY) [enter nothing for today's date]: ") or datetime.today().strftime(format)
+            date_input = input("Enter date (MM-DD-YYYY) [enter nothing for today's date]: ") or datetime.today().strftime(date_format)
 
             try:
                 formatted = datetime.strptime(date_input, date_format)
