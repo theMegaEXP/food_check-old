@@ -31,13 +31,15 @@ class Validate:
 
         
     def time():
-        time_input = input("Enter time (like this - 02:05AM) [enter nothing for the current time]: ") or datetime.now().strftime('%I:%M%p')
-        
-        try:
-            return datetime.strptime(time_input, '%I:%M%p')
-        except ValueError:
-            Print.red("This time is not valid")
-            Validate.time()
+        time_format = '%I:%M%p'
+        while True:
+            time_input = input("Enter time (like this - 02:05AM) [enter nothing for the current time]: ") or datetime.now().strftime(time_format)
+            
+            try:
+                formatted =  datetime.strptime(time_input, time_format)
+                return formatted.strftime(time_format)
+            except ValueError:
+                Print.red("The time entered is not valid.")
 
     def product():
         product_input = input("Product name: ")
