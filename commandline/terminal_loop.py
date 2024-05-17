@@ -2,21 +2,10 @@ import re
 from datetime import datetime
 
 from helpers import format_datetime, ingredients_to_array
-from data.data import Foods, SymptomTimes, SymptomsAvailable, Data
+from data.init import Data, foods, symptomsAvailable, symptoms
 from data.barcode_search import get_ingredients
 from commandline.print import Print
 from commandline.validation import Validate
-
-Data.import_data()
-
-foods = Foods()
-foods.retrieve_data() 
-
-symptomsAvailable = SymptomsAvailable()
-symptomsAvailable.retrieve_data()
-
-symptoms = SymptomTimes()
-symptoms.retrieve_data()
 
 
 def start():
