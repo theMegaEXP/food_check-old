@@ -33,12 +33,14 @@
     "symptomTimes": [
         {
             "symptom": "Headache",
+            "severity": 6,
             "date": "05-16-2024",
             "time": "03:45PM",
             "datetime": "2024-05-16 15:45:00"
         },
         {
             "symptom": "Nausia",
+            "severity": 2,
             "date": "05-17-2024",
             "time": "12:10PM",
             "datetime": "2024-05-17 12:10:00"

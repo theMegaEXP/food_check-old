@@ -78,3 +78,13 @@ class Validate:
                 return formatted.strftime(time_format)
             except ValueError:
                 Print.red("The time entered is not valid.")
+
+    def severity():
+        severity_input = input("Rank from 1-10 how sever this symptom is right now: ")
+
+        if not severity_input.isdigit():
+            Print.red("You must enter a number here.")
+        elif int(severity_input) < 1 or int(severity_input) > 10:
+            Print.red("The number you entered does not have a coresponding command.")
+        else:
+            return int(severity_input)

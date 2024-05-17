@@ -197,14 +197,17 @@ class InsertData:
             if symptom == 'exit':
                 break
             elif any(d.get('symptom') == symptom for d in symptomsAvailable.data):
+                severity = Validate.severity()
                 date, time = InsertData.datetime()
                 print()
                 Print.key_value("Symptom: ", symptom)
+                Print.key_value("Symptom: ", severity)
                 Print.key_value("Date", date)
                 Print.key_value("Time", time)
                 if Validate.confirmation("Does the information above look correct?"):
                     symptoms.add_data({
                         'symptom': symptom,
+                        'severity': severity,
                         'date': date,
                         'time': time,
                         'datetime': format_datetime(date, time)
