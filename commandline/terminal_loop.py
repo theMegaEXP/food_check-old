@@ -80,24 +80,22 @@ class InsertData:
             print("Enter a product name. You can leave this field blank.")
 
             print()
-            print("Does this look correct?")
             Print.key_value("Barcode", barcode)
             Print.key_value("Product", product)
             Print.key_value("Ingredients", ingredients)
             Print.key_value("Date", date)
             Print.key_value("Time", time)
 
-
-
-            foods.add_data({
-                'barcode': barcode,
-                'product': product,
-                'ingredientsRaw': ingredients,
-                'ingredients': ingredients_to_array(ingredients) if isinstance(ingredients, str) else ingredients,
-                'date': date,
-                'time': time,
-                'datetime': format_datetime(date, time)
-            })
+            if (Validate.confirmation("Does the above look correct?")):
+                foods.add_data({
+                    'barcode': barcode,
+                    'product': product,
+                    'ingredientsRaw': ingredients,
+                    'ingredients': ingredients_to_array(ingredients) if isinstance(ingredients, str) else ingredients,
+                    'date': date,
+                    'time': time,
+                    'datetime': format_datetime(date, time)
+                })
         
 
     def entry():
@@ -163,9 +161,6 @@ class InsertData:
             
             elif ingr_input == 'exit':
                 break
-            
-            else:
-                continue
     
 
     def available_symptom():
@@ -190,8 +185,7 @@ class InsertData:
                 })
                 break
             else:
-                Print.red("You did not enter a value correctly")
-                continue     
+                Print.red("You did not enter a value correctly")  
     
     def symptom():
         while True:
@@ -217,11 +211,8 @@ class InsertData:
                     print()
                     Print.green("Data submitted.")
                     break
-                else:
-                    continue
             else:
                 Print.red("That symptom does not exist. Please add it first.")
-                continue
 
 class ViewData:
     def basicView(type):
@@ -248,7 +239,6 @@ class ViewData:
                 break
             else:
                 Print.red("You did not enter a correct value.")
-                continue
                 
     def foods():
        ViewData.basicView(foods)
