@@ -3,7 +3,7 @@ from datetime import datetime
 
 from helpers import format_datetime, ingredients_to_array
 from data.init import Data, foods, symptomsAvailable, symptoms
-from data.barcode_search import get_ingredients
+from data.barcode_search import get_product_ingredients
 from commandline.print import Print
 from commandline.validation import Validate
 
@@ -68,7 +68,7 @@ class InsertData:
 
     def barcode():
         barcode = Validate.barcode(False)
-        ingredients = get_ingredients(barcode)
+        product, ingredients = get_product_ingredients(barcode)
 
         if ingredients == False or len(barcode) != 12:
             Print.red("Unable to retreive ingredients based on barcode data")
@@ -78,20 +78,22 @@ class InsertData:
             date, time = InsertData.datetime()
 
             print("Enter a product name. You can leave this field blank.")
-            product = Validate.product()
 
             print()
             print("Does this look correct?")
-            Print.key_value("Barcode: ", barcode)
-            Print.key_value("Ingredients: ", ingredients)
-            Print.key_value("Date: ", date)
-            Print.key_value("Time: ", time)
+            Print.key_value("Barcode", barcode)
+            Print.key_value("Product", product)
+            Print.key_value("Ingredients", ingredients)
+            Print.key_value("Date", date)
+            Print.key_value("Time", time)
+
+
 
             foods.add_data({
                 'barcode': barcode,
                 'product': product,
                 'ingredientsRaw': ingredients,
-                'ingredients': ingredients_to_array(ingredients),
+                'ingredients': ingredients_to_array(ingredients) if isinstance(ingredients, str) else ingredients,
                 'date': date,
                 'time': time,
                 'datetime': format_datetime(date, time)

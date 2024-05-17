@@ -81,6 +81,10 @@ class Foods(Data):
     def ingredients_from_barcode(barcode):
         for dict in Data.data_all['foods']:
             return dict['ingredients'] if dict['barcode'] == barcode else None
+        
+    def product_from_barcode(barcode):
+        for dict in Data.data_all['foods']:
+            return dict['product'] if dict['barcode'] == barcode else None
 
 class SymptomTimes(Data):
     def __init__(self):
