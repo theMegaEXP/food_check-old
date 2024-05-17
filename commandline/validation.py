@@ -20,6 +20,8 @@ class Validate:
                 return True
             elif confirm_input == 'no':
                 return False
+            else:
+                Print.red("Please enter 'yes', or 'no'.")
     
     def barcode(allow_blank):
         while True:
