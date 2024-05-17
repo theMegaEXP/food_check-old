@@ -1,4 +1,5 @@
 import json
+import os
 
 from data.generate import Generate
 from helpers import format_datetime
@@ -12,11 +13,13 @@ class Data:
     }
 
     def import_data():
-        with open('data.json', 'r') as f:
+        json_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'storage', 'data.json'))
+        with open(json_file_path, 'r') as f:
             Data.data_all = json.load(f)
 
     def export_data():
-        with open('data.json', 'w') as f:
+        json_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'storage', 'data.json'))
+        with open(json_file_path, 'w') as f:
             json.dump(Data.data_all, f)   
 
     def retrieve_data(self):
