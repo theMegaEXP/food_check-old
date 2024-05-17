@@ -1,6 +1,6 @@
 import re
 from datetime import datetime
-from print import Print
+from commandline.print import Print
 
 class Validate:
     def integer(num_start, num_end):

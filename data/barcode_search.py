@@ -2,7 +2,7 @@ import requests
 import json
 
 from pyhidden import fdc_api_key
-from data import Foods
+from data.data import Foods
 
 def get_ingredients(barcode):
     if Foods.check_barcode(barcode):

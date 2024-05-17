@@ -2,10 +2,10 @@ import re
 from datetime import datetime
 
 from helpers import format_datetime, ingredients_to_array
-from data import Foods, SymptomTimes, SymptomsAvailable, Data
-from barcode_search import get_ingredients
-from print import Print
-from validation import Validate
+from data.data import Foods, SymptomTimes, SymptomsAvailable, Data
+from data.barcode_search import get_ingredients
+from commandline.print import Print
+from commandline.validation import Validate
 
 Data.import_data()
 

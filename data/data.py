@@ -1,8 +1,8 @@
 import json
 
-from generate import Generate
+from data.generate import Generate
 from helpers import format_datetime
-from print import Print
+from commandline.print import Print
 
 class Data:
     data_all = {
