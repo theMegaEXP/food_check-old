@@ -96,6 +96,7 @@ class InsertData:
                     'time': time,
                     'datetime': format_datetime(date, time)
                 })
+                Print.green("Data submitted.")
         
 
     def entry():
@@ -157,6 +158,7 @@ class InsertData:
                     'time': time,
                     'datetime': format_datetime(date, time)
                 })
+                Print.green("Data submitted.")
                 break
             
             elif ingr_input == 'exit':
@@ -183,6 +185,7 @@ class InsertData:
                 symptomsAvailable.add_data({
                     'symptom': symptom,
                 })
+                Print.green("Data submitted.")
                 break
             else:
                 Print.red("You did not enter a value correctly")  
