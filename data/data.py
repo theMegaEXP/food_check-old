@@ -93,6 +93,21 @@ class SymptomTimes(Data):
         self.retrieve_data()
         self.send_data()
 
+    def add_dummy_data(self, amount):
+        for i in range(amount):
+            symptom = Generate.symptom()
+            severity = Generate.integer(1, 10)
+            date = Generate.date()
+            time = Generate.time()
+            datetime = format_datetime(date, time)
+            self.add_data({
+                'symptom': symptom,
+                'severity': severity,
+                'date': date,
+                'time': time,
+                'datetime': datetime,
+            })
+
 
 class SymptomsAvailable(Data):
     def __init__(self):
@@ -104,6 +119,8 @@ class SymptomsAvailable(Data):
     def add_dummy_data(self, amount):
         for i in range(amount):
             self.add_data({
-                'symptom': Generate.symptom()
+                'symptom': Generate.symptom(),
             })
+
+    
         

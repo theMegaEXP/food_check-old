@@ -18,10 +18,10 @@ class Generate:
     
     def time():
         hour = str(random.randint(1, 12))
-        hour_padded = f'0{hour}' if len(hour) < 2 else hour
-        minute = str(random.randint(1, 12) * 5)
+        minute = str(random.randint(0, 11) * 5).zfill(2)
         ampm = 'AM' if random.randint(0, 1) == 0 else 'PM'
-        return f"{hour_padded}:{minute}{ampm}"
+        time_str = f"{hour}:{minute}{ampm}"
+        return time_str
     
     def symptom():
         symptoms = ['headache', 'stomach pain', 'swelling', 'hives', 'vomiting', 'nausia']
