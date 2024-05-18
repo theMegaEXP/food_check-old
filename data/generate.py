@@ -3,7 +3,7 @@ from datetime import datetime
 
 class Generate:
     def integer(min_num, max_num):
-        random.randint(min_num, max_num)
+        return random.randint(min_num, max_num)
         
     def barcode():
         return ''.join([str(random.randint(0, 9)) for _ in range(12)])
