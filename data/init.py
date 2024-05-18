@@ -4,11 +4,11 @@ Data.import_data()
 
 foods = Foods()
 foods.retrieve_data() 
-foods.add_dummy_data(10)
+foods.add_dummy_data(15)
 
 symptomsAvailable = SymptomsAvailable()
 symptomsAvailable.retrieve_data()
-symptomsAvailable.add_dummy_data(5)
+symptomsAvailable.add_dummy_data(10)
 
 symptoms = SymptomTimes()
 symptoms.retrieve_data()

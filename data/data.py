@@ -66,6 +66,7 @@ class Foods(Data):
             ingredients = Generate.ingredients()
             date = Generate.date()
             time = Generate.time()
+            datetime = format_datetime(date, time)
             self.add_data({
                 'barcode': barcode,
                 'product': "Dummy Product",
@@ -73,6 +74,7 @@ class Foods(Data):
                 'ingredients': ingredients,
                 'date': date,
                 'time': time,
+                'datetime': datetime
             })
 
     def check_barcode(barcode):
