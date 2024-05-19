@@ -1,4 +1,4 @@
-from init import cursor as c, conn
+from database.init import cursor as c, conn
 
 class DB:
 

@@ -1,4 +1,4 @@
-from db import DB
+from database.db import DB
 
 def create_tables():
     DB.Query.create_table('ingredients', ['id INTEGER PRIMARY KEY', 
@@ -20,14 +20,3 @@ def create_tables():
                                             'FOREIGN KEY(product_id) REFERENCES products(id)',
                                             'FOREIGN KEY(ingredient_id) REFERENCES ingredients(id)',
                                             'PRIMARY KEY (product_id, ingredient_id)'])
-    
-create_tables()
-DB.View.show_tables()
-DB.Query.insert_into('products', ['product', 'barcode'], ['Apple', 'N/A'])
-DB.Query.insert_into('products', ['product', 'barcode'], ['Banana', 'N/A'])
-print(DB.Query.fetch_table('products'))
-DB.View.table('products')
-print()
-
-DB.Operations.reset()
-DB.Operations.close()

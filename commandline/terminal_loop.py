@@ -7,6 +7,7 @@ from data.barcode_search import get_product_ingredients
 from commandline.print import Print
 from commandline.validation import Validate
 from commandline.database import run_db_query
+from database.db import DB
 
 
 def start():
@@ -50,6 +51,7 @@ def start():
             symptomsAvailable.send_data()
             symptoms.send_data()
             Data.export_data()
+            DB.Operations.close()
             Print.green("Data saved and app exited.")
             break
         
