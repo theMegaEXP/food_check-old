@@ -12,8 +12,8 @@ def create_tables():
                                                'FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)'])
 
     DB.Query.create_table('products', ['id INTEGER PRIMARY KEY', 
-                                    'product TEXT', 
-                                    'barcode TEXT'])
+                                    'product TEXT UNIQUE', 
+                                    'barcode TEXT UNIQUE'])
     
     DB.Query.create_table('product_times', ['id INTEGER PRIMARY KEY',
                                             'product_id INTEGER',
