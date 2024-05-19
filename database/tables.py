@@ -5,6 +5,10 @@ from init import cursor as c, conn
 def show_tables():
     Query.query("SELECT name FROM sqlite_master WHERE type='table';")
 
+def delete_tables():
+    show_tables()
+
+
 def create_tables():
     Query.create_table('ingredients', ['id INTEGER PRIMARY KEY', 
                                    'ingredient TEXT'])
@@ -29,5 +33,8 @@ def create_tables():
     
 create_tables()
 show_tables()
+Query.insert_into('products', ['product', 'barcode'], ['Apple', 'N/A'])
+print(Query.fetch_table('products'))
+print()
 
 conn.close()
