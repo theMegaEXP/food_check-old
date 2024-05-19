@@ -1,20 +1,4 @@
-from query import DB
-
-from init import cursor as c, conn
-
-def show_tables():
-    DB.Query.query_print("SELECT name FROM sqlite_master WHERE type='table';")
-
-def delete_tables():
-    c.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tables = c.fetchall()
-
-    for table in tables:
-        table_name = table[0]
-        DB.Query.drop_table(table_name)
-        print(f"{table_name} deleted.")
-        
-
+from db import DB
 
 def create_tables():
     DB.Query.create_table('ingredients', ['id INTEGER PRIMARY KEY', 
@@ -38,11 +22,10 @@ def create_tables():
                                             'PRIMARY KEY (product_id, ingredient_id)'])
     
 create_tables()
-show_tables()
+DB.View.show_tables()
 DB.Query.insert_into('products', ['product', 'barcode'], ['Apple', 'N/A'])
 print(DB.Query.fetch_table('products'))
 print()
 
-delete_tables()
-
-conn.close()
+DB.Operations.reset()
+DB.Operations.close()

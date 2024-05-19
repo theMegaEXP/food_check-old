@@ -29,7 +29,20 @@ class DB:
             return c.fetchall()
     
     class View:
-        pass
+        def show_tables():
+            DB.Query.query_print("SELECT name FROM sqlite_master WHERE type='table';")
         
 
+    class Operations:
+        def close():
+            conn.close()
+
+        def reset():
+            c.execute("SELECT name FROM sqlite_master WHERE type='table';")
+            tables = c.fetchall()
+
+            for table in tables:
+                table_name = table[0]
+                DB.Query.drop_table(table_name)
+                print(f"{table_name} deleted.")
     
