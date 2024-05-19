@@ -14,14 +14,14 @@ class DB:
             conn.commit()
 
         def drop_table(table: str):
-            c.execute(f"DROP TABLE IF EXISTS {table}")
+            c.execute(f"DROP TABLE IF EXISTS {table};")
             conn.commit()
 
         def insert_into(table: str, columns: list, values: list):
             columns_str = ", ".join(columns)
             values_str = ", ".join([f"'{value}'" for value in values])
 
-            c.execute(f"INSERT INTO {table} ({columns_str}) VALUES ({values_str})")
+            c.execute(f"INSERT INTO {table} ({columns_str}) VALUES ({values_str});")
             conn.commit()
 
         def fetch_table(table: str):
@@ -31,6 +31,29 @@ class DB:
     class View:
         def show_tables():
             DB.Query.query_print("SELECT name FROM sqlite_master WHERE type='table';")
+
+        def table(table: str):
+            c.execute(f"PRAGMA table_info({table});")
+            columns = c.fetchall()
+            column_names = [column[1] for column in columns]
+
+            c.execute(f"SELECT * FROM {table};")
+            data = c.fetchall()
+
+            print(table)
+
+            columns_joined = ''.join([f"| {column_name} |" for column_name in column_names])
+            print(columns_joined)
+            
+            underline = '' + ''.join(['=' for _ in range(len(columns_joined))])
+            print(underline)
+
+            for row in data:
+                row_joined = ''.join([f"| {cell} |" for cell in row])
+                print(row_joined)
+
+
+        
         
 
     class Operations:
