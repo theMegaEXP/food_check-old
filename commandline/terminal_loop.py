@@ -6,12 +6,13 @@ from data.init import Data, foods, symptomsAvailable, symptoms
 from data.barcode_search import get_product_ingredients
 from commandline.print import Print
 from commandline.validation import Validate
+from commandline.database import run_db_query
 
 
 def start():
     while True:
         Print.underline("Press 1 to enter data. Press 2 to view data. Press 3 to exit.")
-        start_input = Validate.integer(1, 3)
+        start_input = Validate.integer(1, 4)
 
         if start_input == 1:
             Print.underline("Press 1 to search with a barcode. Press 2 to manually enter ingredients. Press 3 to add a symptom you are having. Press 4 to enter when you have a symptom.")
@@ -52,6 +53,9 @@ def start():
             Print.green("Data saved and app exited.")
             break
         
+        elif start_input == 4:
+            run_db_query()
+
         else:
             continue
 
