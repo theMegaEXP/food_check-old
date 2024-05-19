@@ -15,6 +15,13 @@ def create_tables():
                                     'product TEXT', 
                                     'barcode TEXT'])
     
+    DB.Query.create_table('product_times', ['id INTEGER PRIMARY KEY',
+                                            'product_id INTEGER',
+                                            'date TEXT NULL',
+                                            'time TEXT NULL',
+                                            'datetime TEXT',
+                                            'FOREIGN KEY (product_id) REFERENCES products(id)'])
+    
     DB.Query.create_table('product_ingredients', ['product_id INTEGER',
                                                   'ingredient_id INTEGER',
                                                   'FOREIGN KEY (product_id) REFERENCES products(id)',
