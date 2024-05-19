@@ -3,10 +3,17 @@ from query import Query
 from init import cursor as c, conn
 
 def show_tables():
-    Query.query("SELECT name FROM sqlite_master WHERE type='table';")
+    Query.query_print("SELECT name FROM sqlite_master WHERE type='table';")
 
 def delete_tables():
-    show_tables()
+    c.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    tables = c.fetchall()
+
+    for table in tables:
+        table_name = table[0]
+        Query.drop_table(table_name)
+        print(f"{table_name} deleted.")
+        
 
 
 def create_tables():
@@ -28,13 +35,14 @@ def create_tables():
                                             'ingredient_id INTEGER',
                                             'FOREIGN KEY(product_id) REFERENCES products(id)',
                                             'FOREIGN KEY(ingredient_id) REFERENCES ingredients(id)',
-                                            'PRIMARY KEY (product_id, ingredient_id)'
-                                            ])
+                                            'PRIMARY KEY (product_id, ingredient_id)'])
     
 create_tables()
 show_tables()
 Query.insert_into('products', ['product', 'barcode'], ['Apple', 'N/A'])
 print(Query.fetch_table('products'))
 print()
+
+delete_tables()
 
 conn.close()

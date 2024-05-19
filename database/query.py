@@ -1,7 +1,7 @@
 from init import cursor as c, conn
 
 class Query:
-    def query(query: str):
+    def query_print(query: str):
         c.execute(query)
         print(c.fetchall())
    
