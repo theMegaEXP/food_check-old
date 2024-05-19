@@ -2,3 +2,4 @@ __pycache__/
 .env
 pyhidden.py
 data.json
+*.db
