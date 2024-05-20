@@ -1,4 +1,5 @@
 from database.db import DB
+from commandline.print import Print
 
 def create_tables():
     DB.Query.create_table('ingredients', ['id INTEGER PRIMARY KEY', 
@@ -38,4 +39,6 @@ def create_tables():
                                             'time TEXT NULL',
                                             'datetime TEXT',
                                             'FOREIGN KEY (symptom_id) REFERENCES symptoms(id)'])
+    
+    Print.green("Database tables created.")
 

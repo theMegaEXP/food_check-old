@@ -11,11 +11,12 @@ def run_db_query():
     print("Type 'exit' to exit. Type 'show' followed by a table to show a table.")
     print("Type 'reset' to reset the database.")
     print("Type 'show' followed by a table name to view a DB table.")
-    print("Yype 'start' to start inserting data into the database.")
-    print("Type -q followed by a query to query the database. WARNING: If you edit any tables, you may need to restart the app.")
+    print("Type 'start' to start inserting data into the database.")
+    print("Type -q followed by a query to query the database.")
+    Print.orange("WARNING: If you edit any tables, you may need to restart the app.")
     
     while True:
-        query_input = input()
+        query_input = input("Command: ")
         
         if query_input == 'exit':
             break
@@ -44,6 +45,6 @@ def run_db_query():
                 Print.red("This query raised an error.")
 
         else:
-            Print.red("Your value is not valid.")
+            Print.red("This command is not valid.")
 
         

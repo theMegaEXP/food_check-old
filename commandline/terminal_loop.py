@@ -12,7 +12,7 @@ from database.db import DB
 
 def start():
     while True:
-        Print.underline("Press 1 to enter data. Press 2 to view data. Press 3 to exit.")
+        Print.underline("Press 1 to enter data. Press 2 to view data. Press 3 to exit. Press 4 to access the database.")
         start_input = Validate.integer(1, 4)
 
         if start_input == 1:

@@ -1,8 +1,10 @@
 from data.init import foods, symptomsAvailable as symptoms, symptoms as symptomTimes
 from database.db import DB
+from commandline.print import Print
 
 def data_to_db():
-    
+    Print.blue("Entering data into database tables...")
+
     ingredients_added = []
     for food in foods.data:
         product_id_value = ''
@@ -49,12 +51,23 @@ def data_to_db():
             
     del ingredients_added 
 
+    Print.purple("ingredients done.")
+    Print.purple("ingredient_times done.")
+    Print.purple("products done.")
+    Print.purple("product_times done.")
+
     # Insert into symptoms table
     for symptom in symptoms.data:
         if not DB.Query.value_exists('symptoms', 'symptom', symptom['symptom']):
             DB.Query.insert_into('symptoms', ['symptom'], [symptom['symptom']])
 
+    Print.purple("symptoms done.")
+
     # Insert into symptom_times table
     for symptom in symptomTimes.data:
         symptom_id = DB.Query.fetch_id('symptoms', 'symptom', symptom['symptom'])
         DB.Query.insert_into('symptom_times', ['symptom_id', 'severity', 'date', 'time', 'datetime'], [symptom_id, symptom['severity'], symptom['date'], symptom['time'], symptom['datetime']])
+
+    Print.purple("symptom times done.")
+
+    Print.green('Data added to database tables.')
