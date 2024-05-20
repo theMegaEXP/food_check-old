@@ -34,10 +34,14 @@ class DB:
         
         def fetch_id(table: str, column: str, name: str):
             c.execute(f"SELECT id FROM {table} WHERE {column} = '{name}'")
-            return c.fetchall()
+            return c.fetchone()[0]
         
         def value_exists(table: str, column: str, value: str):
             c.execute(f"SELECT COUNT(*) FROM {table} WHERE {column} = '{value}'")
+            return c.fetchone()[0] > 0
+        
+        def composite_key_exists(table: str, column1: str, value1: str, column2: str, value2: str):
+            c.execute(f"SELECT COUNT(*) FROM {table} WHERE {column1} = ? AND {column2} = ?", (value1, value2))
             return c.fetchone()[0] > 0
     
     class View:
