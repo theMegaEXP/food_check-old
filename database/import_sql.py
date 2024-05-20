@@ -47,6 +47,14 @@ def data_to_db():
             if product_id and not DB.Query.composite_key_exists('product_ingredients', 'product_id', product_id, 'ingredient_id', ingredient_id):
                 DB.Query.insert_into('product_ingredients', ['product_id', 'ingredient_id'], [product_id, ingredient_id])
             
-
     del ingredients_added 
 
+    # Insert into symptoms table
+    for symptom in symptoms.data:
+        if not DB.Query.value_exists('symptoms', 'symptom', symptom['symptom']):
+            DB.Query.insert_into('symptoms', ['symptom'], [symptom['symptom']])
+
+    # Insert into symptom_times table
+    for symptom in symptomTimes.data:
+        symptom_id = DB.Query.fetch_id('symptoms', 'symptom', symptom['symptom'])
+        DB.Query.insert_into('symptom_times', ['symptom_id', 'severity', 'date', 'time', 'datetime'], [symptom_id, symptom['severity'], symptom['date'], symptom['time'], symptom['datetime']])
