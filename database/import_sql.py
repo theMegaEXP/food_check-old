@@ -8,7 +8,7 @@ def data_to_db():
         product_id_value = ''
         product_id_column = ''
 
-        # Insert products and product times into products and product_times
+        # Insert products into products table
         productExists = food['product'] != 'N/A' or ''
         barcodeExists = food['barcode'] != 'N/A' or ''
 
@@ -28,6 +28,10 @@ def data_to_db():
 
         product_id = DB.Query.fetch_id('products', product_id_column, product_id_value) if product_id_value else None
 
+        # Insert product times into product_times table
+        if product_id:
+            DB.Query.insert_into('product_times', ['product_id', 'date', 'time', 'datetime'], [product_id, food['date'], food['time'], food['datetime']])
+
         for ingredient in food['ingredients']:
             
              # Insert ingredients and ingredient times into ingredients and ingredient_times tables
@@ -39,11 +43,8 @@ def data_to_db():
             
             ingredients_added.append(ingredient)
 
-            print(product_id)
-            print(ingredient_id)
-
             # Join ingredients and products
-            if (product_id and not DB.Query.composite_key_exists('product_ingredients', 'product_id', product_id, 'ingredient_id', ingredient_id)):
+            if product_id and not DB.Query.composite_key_exists('product_ingredients', 'product_id', product_id, 'ingredient_id', ingredient_id):
                 DB.Query.insert_into('product_ingredients', ['product_id', 'ingredient_id'], [product_id, ingredient_id])
             
 
