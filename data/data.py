@@ -69,7 +69,7 @@ class Foods(Data):
             datetime = format_datetime(date, time)
             self.add_data({
                 'barcode': barcode,
-                'product': "Dummy Product",
+                'product': "N/A",
                 'ingredientsRaw': ''.join(ingredients),
                 'ingredients': ingredients,
                 'date': date,

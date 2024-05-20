@@ -6,6 +6,10 @@ class DB:
         def query_print(query: str):
             c.execute(query)
             print(c.fetchall())
+
+        def query_results(query: str):
+            c.execute(query)
+            return c.fetchall()
     
         def create_table(table: str, columns: list[str]):
             columns_str = ', '.join(columns)
@@ -27,6 +31,14 @@ class DB:
         def fetch_table(table: str):
             c.execute(f"SELECT * FROM {table};")
             return c.fetchall()
+        
+        def fetch_id(table: str, column: str, name: str):
+            c.execute(f"SELECT id FROM {table} WHERE {column} = '{name}'")
+            return c.fetchall()
+        
+        def value_exists(table: str, column: str, value: str):
+            c.execute(f"SELECT COUNT(*) FROM {table} WHERE {column} = '{value}'")
+            return c.fetchone()[0] > 0
     
     class View:
         def show_tables():

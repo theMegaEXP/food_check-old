@@ -4,12 +4,10 @@ Data.import_data()
 
 foods = Foods()
 foods.retrieve_data() 
-foods.add_dummy_data(15)
+foods.add_dummy_data(30)
 
 symptomsAvailable = SymptomsAvailable()
 symptomsAvailable.retrieve_data()
-symptomsAvailable.add_dummy_data(10)
 
 symptoms = SymptomTimes()
 symptoms.retrieve_data()
-symptoms.add_dummy_data(15)
