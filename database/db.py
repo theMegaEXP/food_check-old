@@ -53,14 +53,22 @@ class DB:
             return c.fetchone()[0] > 0
         
     class Specifics:
-        def get_ingredients_from_time(table: str, datetime_end: str, hour_subtract: float):
+        def get_ingredients_from_time(foreign_table: str, datetime_end: str, hour_subtract: float):
+            datetime_format = '%Y-%m-%d %H:%M:%S'
             try:
-                datetime.striptime(datetime_end, '%Y-%m-%d %H:%M:%S')
+                datetime.strptime(datetime_end, datetime_format)
             except ValueError:
                 raise ValueError
 
-            datetime_start = datetime_end -  timedelta(hours=hour_subtract)
-            c.execute(f"SELECT * FROM {table} WHERE datetime BETWEEN {datetime_start} AND {datetime_end}")
+            times_table =  foreign_table[:-1] + '_times'
+            datetime_start = (datetime.strptime(datetime_end, datetime_format) -  timedelta(hours=hour_subtract)).strftime(datetime_format)
+            c.execute(f"""
+                        SELECT DISTINCT {foreign_table[:-1]}, COUNT(*) AS count 
+                        FROM {foreign_table} 
+                        JOIN {times_table} ON {foreign_table[:-1]}_id = {times_table}.{foreign_table[:-1]}_id 
+                        WHERE datetime BETWEEN '{datetime_start}' AND '{datetime_end}'
+                        GROUP BY {foreign_table[:-1]}
+                      """)
             return c.fetchall()
     
     class View:

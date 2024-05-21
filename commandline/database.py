@@ -27,6 +27,7 @@ def run_db_query():
 
         elif query_input == 'start':
             data_to_db()
+            print(DB.Specifics.get_ingredients_from_time('ingredients', '2024-05-20 23:05:00', 48))
 
         elif re.search(r'^show ([^\s]+)$', query_input):
             table_name = query_input.split(' ')[1]
