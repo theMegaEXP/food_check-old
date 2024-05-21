@@ -33,6 +33,15 @@ class DB:
             c.execute(f"SELECT * FROM {table};")
             return c.fetchall()
         
+        def fetch_column(table: str, column: str):
+            c.execute(f"SELECT {column} FROM {table}")
+            return c.fetchall()
+
+        def fetch_columns(table: str, columns: list[str]):
+            columns_str = ', '.join(columns)
+            c.execute(f"SELECT {columns_str} FROM {table}")
+            return c.fetchall()
+        
         def fetch_id(table: str, column: str, name: str):
             c.execute(f"SELECT id FROM {table} WHERE {column} = '{name}'")
             return c.fetchone()[0]
