@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from database.init import cursor as c, conn
 from commandline.print import Print
 
@@ -32,10 +34,6 @@ class DB:
         def fetch_table(table: str):
             c.execute(f"SELECT * FROM {table};")
             return c.fetchall()
-        
-        def fetch_column(table: str, column: str):
-            c.execute(f"SELECT {column} FROM {table}")
-            return c.fetchall()
 
         def fetch_columns(table: str, columns: list[str]):
             columns_str = ', '.join(columns)
@@ -53,6 +51,17 @@ class DB:
         def composite_key_exists(table: str, column1: str, value1: str, column2: str, value2: str):
             c.execute(f"SELECT COUNT(*) FROM {table} WHERE {column1} = ? AND {column2} = ?", (value1, value2))
             return c.fetchone()[0] > 0
+        
+    class Specifics:
+        def get_ingredients_from_time(table: str, datetime_end: str, hour_subtract: float):
+            try:
+                datetime.striptime(datetime_end, '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                raise ValueError
+
+            datetime_start = datetime_end -  timedelta(hours=hour_subtract)
+            c.execute(f"SELECT * FROM {table} WHERE datetime BETWEEN {datetime_start} AND {datetime_end}")
+            return c.fetchall()
     
     class View:
         def show_tables():
