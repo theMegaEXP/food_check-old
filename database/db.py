@@ -61,15 +61,17 @@ class DB:
                 raise ValueError
 
             times_table =  foreign_table[:-1] + '_times'
+            column = foreign_table[:-1]
             datetime_start = (datetime.strptime(datetime_end, datetime_format) -  timedelta(hours=hour_subtract)).strftime(datetime_format)
             c.execute(f"""
-                        SELECT DISTINCT {foreign_table[:-1]}, COUNT(*) AS count 
-                        FROM {foreign_table} 
-                        JOIN {times_table} ON {foreign_table[:-1]}_id = {times_table}.{foreign_table[:-1]}_id 
-                        WHERE datetime BETWEEN '{datetime_start}' AND '{datetime_end}'
-                        GROUP BY {foreign_table[:-1]}
+                        SELECT {foreign_table}.{column}, COUNT({times_table}.{column}_id) AS count
+                        FROM {foreign_table}
+                        JOIN {times_table} ON {foreign_table}.id = {times_table}.{column}_id
+                        WHERE {times_table}.datetime BETWEEN '{datetime_start}' AND '{datetime_end}'
+                        GROUP BY {foreign_table}.{column}
                       """)
             return c.fetchall()
+            
     
     class View:
         def show_tables():
