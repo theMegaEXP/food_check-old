@@ -3,3 +3,4 @@ __pycache__/
 pyhidden.py
 data.json
 *.db
+docs/
