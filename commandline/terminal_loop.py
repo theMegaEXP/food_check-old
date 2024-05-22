@@ -12,7 +12,7 @@ from database.db import DB
 
 def start():
     while True:
-        Print.underline("Press 1 to enter data. Press 2 to view data. Press 3 to exit. Press 4 to access the database.")
+        Print.underline("Press 1 to enter data. Press 2 to view data. Press 3 to calculate data. Press 4 to exit. Press 5 to access the database.")
         start_input = Validate.integer(1, 4)
 
         if start_input == 1:
@@ -46,7 +46,7 @@ def start():
                 continue
             
         
-        elif start_input == 3:
+        elif start_input == 4:
             foods.send_data()
             symptomsAvailable.send_data()
             symptoms.send_data()
@@ -55,7 +55,7 @@ def start():
             Print.green("Data saved and app exited.")
             break
         
-        elif start_input == 4:
+        elif start_input == 5:
             run_db_query()
 
         else:
@@ -229,7 +229,7 @@ class ViewData:
             print()
             type.log_data()
             print()
-            print("Type the id followed by -d [n -d] to delete a entry")
+            print("Type the id followed by -d (ex: 12 -d) to delete a entry")
             print("Type clear if you want to delete everything")
             print("Press ENTER to exit")
             viewing_input = input()
