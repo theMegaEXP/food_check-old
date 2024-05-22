@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from database.init import cursor as c, conn
 from commandline.print import Print
 
@@ -32,6 +34,11 @@ class DB:
         def fetch_table(table: str):
             c.execute(f"SELECT * FROM {table};")
             return c.fetchall()
+
+        def fetch_columns(table: str, columns: list[str]):
+            columns_str = ', '.join(columns)
+            c.execute(f"SELECT {columns_str} FROM {table}")
+            return c.fetchall()
         
         def fetch_id(table: str, column: str, name: str):
             c.execute(f"SELECT id FROM {table} WHERE {column} = '{name}'")
@@ -44,7 +51,7 @@ class DB:
         def composite_key_exists(table: str, column1: str, value1: str, column2: str, value2: str):
             c.execute(f"SELECT COUNT(*) FROM {table} WHERE {column1} = ? AND {column2} = ?", (value1, value2))
             return c.fetchone()[0] > 0
-    
+            
     class View:
         def show_tables():
             DB.Query.query_print("SELECT name FROM sqlite_master WHERE type='table';")
@@ -68,10 +75,6 @@ class DB:
             for row in data:
                 row_joined = ''.join([f"| {cell} |" for cell in row])
                 print(row_joined)
-
-
-        
-        
 
     class Operations:
         def close():
