@@ -51,28 +51,7 @@ class DB:
         def composite_key_exists(table: str, column1: str, value1: str, column2: str, value2: str):
             c.execute(f"SELECT COUNT(*) FROM {table} WHERE {column1} = ? AND {column2} = ?", (value1, value2))
             return c.fetchone()[0] > 0
-        
-    class Specifics:
-        def get_ingredients_from_time(foreign_table: str, datetime_end: str, hour_subtract: float):
-            datetime_format = '%Y-%m-%d %H:%M:%S'
-            try:
-                datetime.strptime(datetime_end, datetime_format)
-            except ValueError:
-                raise ValueError
-
-            times_table =  foreign_table[:-1] + '_times'
-            column = foreign_table[:-1]
-            datetime_start = (datetime.strptime(datetime_end, datetime_format) -  timedelta(hours=hour_subtract)).strftime(datetime_format)
-            c.execute(f"""
-                        SELECT {foreign_table}.{column}, COUNT({times_table}.{column}_id) AS count
-                        FROM {foreign_table}
-                        JOIN {times_table} ON {foreign_table}.id = {times_table}.{column}_id
-                        WHERE {times_table}.datetime BETWEEN '{datetime_start}' AND '{datetime_end}'
-                        GROUP BY {foreign_table}.{column}
-                      """)
-            return c.fetchall()
             
-    
     class View:
         def show_tables():
             DB.Query.query_print("SELECT name FROM sqlite_master WHERE type='table';")
@@ -96,10 +75,6 @@ class DB:
             for row in data:
                 row_joined = ''.join([f"| {cell} |" for cell in row])
                 print(row_joined)
-
-
-        
-        
 
     class Operations:
         def close():
