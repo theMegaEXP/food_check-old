@@ -5,6 +5,7 @@ from database.db import DB
 from commandline.print import Print
 from database.import_sql import data_to_db
 import database.tables as tables
+from calculate import calculate
 
 def run_db_query():
     Print.bold("You have entered the place to access the database.")
@@ -28,6 +29,7 @@ def run_db_query():
         elif query_input == 'start':
             data_to_db()
             print(DB.Specifics.get_ingredients_from_time('ingredients', '2024-05-20 23:05:00', 48))
+            calculate()
 
         elif re.search(r'^show ([^\s]+)$', query_input):
             table_name = query_input.split(' ')[1]
