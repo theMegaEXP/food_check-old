@@ -8,5 +8,5 @@ foods.retrieve_data()
 symptomsAvailable = SymptomsAvailable()
 symptomsAvailable.retrieve_data()
 
-symptoms = SymptomTimes()
-symptoms.retrieve_data()
+symptomTimes = SymptomTimes()
+symptomTimes.retrieve_data()

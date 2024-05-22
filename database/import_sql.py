@@ -1,4 +1,4 @@
-from data.init import foods, symptomsAvailable as symptoms, symptoms as symptomTimes
+from data.init import foods, symptomsAvailable as symptoms, symptomTimes
 from database.db import DB
 from commandline.print import Print
 

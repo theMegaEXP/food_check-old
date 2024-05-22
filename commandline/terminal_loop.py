@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 
 from helpers import format_datetime, ingredients_to_array
-from data.init import Data, foods, symptomsAvailable, symptoms
+from data.init import Data, foods, symptomsAvailable, symptomTimes
 from data.barcode_search import get_product_ingredients
 from commandline.print import Print
 from commandline.validation import Validate
@@ -40,7 +40,7 @@ def start():
             elif secondary_input == 2:
                 ViewData.availableSymptoms()
             elif secondary_input == 3:
-                ViewData.symptoms()
+                ViewData.symptomTimes()
             else: 
                 Print.underline("You did not enter the specified fields. Program staring over...")
                 continue
@@ -49,7 +49,7 @@ def start():
         elif start_input == 4:
             foods.send_data()
             symptomsAvailable.send_data()
-            symptoms.send_data()
+            symptomTimes.send_data()
             Data.export_data()
             DB.Operations.close()
             Print.green("Data saved and app exited.")
@@ -210,7 +210,7 @@ class InsertData:
                 Print.key_value("Date", date)
                 Print.key_value("Time", time)
                 if Validate.confirmation("Does the information above look correct?"):
-                    symptoms.add_data({
+                    symptomTimes.add_data({
                         'symptom': symptom,
                         'severity': severity,
                         'date': date,
@@ -255,5 +255,5 @@ class ViewData:
     def availableSymptoms():
         ViewData.basicView(symptomsAvailable)
 
-    def symptoms():
-        ViewData.basicView(symptoms)
+    def symptomTimes():
+        ViewData.basicView(symptomTimes)
