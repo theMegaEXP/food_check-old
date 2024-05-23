@@ -8,12 +8,15 @@ from commandline.print import Print
 from commandline.validation import Validate
 from commandline.database import run_db_query
 from database.db import DB
+from database.import_sql import data_to_db
+import database.tables as tables
+from calculate import calculate
 
 
 def start():
     while True:
         Print.underline("Press 1 to enter data. Press 2 to view data. Press 3 to calculate data. Press 4 to exit. Press 5 to access the database.")
-        start_input = Validate.integer(1, 4)
+        start_input = Validate.integer(1, 5)
 
         if start_input == 1:
             Print.underline("Press 1 to search with a barcode. Press 2 to manually enter ingredients. Press 3 to add a symptom you are having. Press 4 to enter when you have a symptom.")
@@ -45,6 +48,11 @@ def start():
                 Print.underline("You did not enter the specified fields. Program staring over...")
                 continue
             
+        elif start_input == 3:
+            DB.Operations.reset()
+            tables.create_tables()
+            data_to_db()
+            calculate()
         
         elif start_input == 4:
             foods.send_data()

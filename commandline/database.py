@@ -12,7 +12,6 @@ def run_db_query():
     print("Type 'exit' to exit. Type 'show' followed by a table to show a table.")
     print("Type 'reset' to reset the database.")
     print("Type 'show' followed by a table name to view a DB table.")
-    print("Type 'start' to start inserting data into the database.")
     print("Type -q followed by a query to query the database.")
     Print.orange("WARNING: If you edit any tables, you may need to restart the app.")
     
@@ -25,10 +24,6 @@ def run_db_query():
         elif query_input == 'reset':
             DB.Operations.reset()
             tables.create_tables()
-
-        elif query_input == 'start':
-            data_to_db()
-            calculate()
 
         elif re.search(r'^show ([^\s]+)$', query_input):
             table_name = query_input.split(' ')[1]
