@@ -1,4 +1,5 @@
 from database.db import DB
+from commandline.print import Print
 
 def calculate():
     # query = """
@@ -56,5 +57,13 @@ def calculate():
         FROM
             symptoms;
     """
-    DB.Query.query_print(query)
+    results = DB.Query.query_results(query)
+    print(results)
+    
+    Print.underline_bold("Most likely ingredient to be causing each symptom.")
+    for result in results:
+        symptom = result[0].title()
+        ingredient = result[1] if result[1] != None else 'N/A'
+
+        Print.key_value(symptom, ingredient)
 
