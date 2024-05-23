@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 
 from helpers import format_datetime, ingredients_to_array
-from data.init import Data, foods, symptomsAvailable, symptomTimes
+from data.init import Data, foods, symptomsAvailable, symptomTimes, ignoredIngredients
 from data.barcode_search import get_product_ingredients
 from commandline.print import Print
 from commandline.validation import Validate
@@ -230,6 +230,11 @@ class InsertData:
                     break
             else:
                 Print.red("That symptom does not exist. Please add it first.")
+
+    def ignored_ingredient():
+        ingredient = Validate.ingredient()
+
+        Print.green(f"Ingredient ({ingredient}) is now being ignored.")
 
 class ViewData:
     def basicView(type):

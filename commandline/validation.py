@@ -90,3 +90,15 @@ class Validate:
             Print.red("The number you entered does not have a coresponding command.")
         else:
             return int(severity_input)
+        
+    def ingredient():
+        ingredient_input = input("Ingredient: ")
+
+        while True:
+            if ingredient_input == '':
+                Print("You did not enter anything.")
+            elif ingredient_input == 'exit':
+                break
+            else:
+                return ingredient_input
+

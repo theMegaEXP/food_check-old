@@ -10,6 +10,7 @@ class Data:
         'foods': [],
         'symptomsAvailable': [],
         'symptomTimes': [],
+        'ignoredIngredients': [],
     }
 
     def import_data():
@@ -124,5 +125,11 @@ class SymptomsAvailable(Data):
                 'symptom': Generate.symptom(),
             })
 
-    
+
+class IgnoredIngredients(Data):
+    def __init__(self):
+        super().__init__()
+        self.data = []
+        self.retrieve_data()
+        self.send_data()
         

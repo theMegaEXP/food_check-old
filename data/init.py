@@ -1,4 +1,4 @@
-from data.data import Foods, SymptomTimes, SymptomsAvailable, Data
+from data.data import Foods, SymptomTimes, SymptomsAvailable, IgnoredIngredients, Data
 
 Data.import_data()
 
@@ -10,3 +10,5 @@ symptomsAvailable.retrieve_data()
 
 symptomTimes = SymptomTimes()
 symptomTimes.retrieve_data()
+
+ignoredIngredients = IgnoredIngredients()
