@@ -19,8 +19,8 @@ def start():
         start_input = Validate.integer(1, 5)
 
         if start_input == 1:
-            Print.underline("Press 1 to search with a barcode. Press 2 to manually enter ingredients. Press 3 to add a symptom you are having. Press 4 to enter when you have a symptom.")
-            secondary_input = Validate.integer(1, 4)
+            Print.underline("Press 1 to search with a barcode. Press 2 to manually enter ingredients. Press 3 to add a symptom you are having. Press 4 to enter when you have a symptom. Press 5 to enter an ingredient to ignore as a possible symptom cause.")
+            secondary_input = Validate.integer(1, 5)
 
             if secondary_input == 1:
                 InsertData.barcode()
@@ -30,13 +30,15 @@ def start():
                 InsertData.available_symptom()
             elif secondary_input == 4:
                 InsertData.symptom()
+            elif secondary_input == 5:
+                InsertData.ignored_ingredient()
             else: 
                 Print.red("You did not enter the specified fields. Program staring over...")
                 continue
 
         elif start_input == 2:
-            Print.underline("Press 1 to view food items submitted. Press 2 to view symptoms submitted. Press 3 to view symptom times submitted.")
-            secondary_input = Validate.integer(1, 3)
+            Print.underline("Press 1 to view food items submitted. Press 2 to view symptoms submitted. Press 3 to view symptom times submitted. Press 4 to view symptoms ignored for a possible symptom cause.")
+            secondary_input = Validate.integer(1, 5)
 
             if secondary_input == 1:
                 ViewData.foods()
@@ -44,6 +46,8 @@ def start():
                 ViewData.availableSymptoms()
             elif secondary_input == 3:
                 ViewData.symptomTimes()
+            elif secondary_input == 4:
+                ViewData.ignoredIngredients()
             else: 
                 Print.underline("You did not enter the specified fields. Program staring over...")
                 continue
@@ -233,8 +237,8 @@ class InsertData:
 
     def ignored_ingredient():
         ingredient = Validate.ingredient()
-
-        Print.green(f"Ingredient ({ingredient}) is now being ignored.")
+        ignoredIngredients.add_data({ 'ingredient': ingredient })
+        Print.green(f"Ingredient {ingredient}, is now being ignored.")
 
 class ViewData:
     def basicView(type):
@@ -270,3 +274,6 @@ class ViewData:
 
     def symptomTimes():
         ViewData.basicView(symptomTimes)
+
+    def ignoredIngredients():
+        ViewData.basicView(ignoredIngredients)
