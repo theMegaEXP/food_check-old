@@ -40,5 +40,8 @@ def create_tables():
                                             'datetime TEXT',
                                             'FOREIGN KEY (symptom_id) REFERENCES symptoms(id)'])
     
+    DB.Query.create_table('ignored_ingredients', ['id INTEGER PRIMARY KEY',
+                                                  'ingredient TEXT'])
+    
     Print.green("Database tables created.")
 
