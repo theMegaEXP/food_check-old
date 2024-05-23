@@ -92,11 +92,10 @@ class Validate:
             return int(severity_input)
         
     def ingredient():
-        ingredient_input = input("Ingredient: ")
-
         while True:
+            ingredient_input = input("Ingredient: ")
             if ingredient_input == '':
-                Print("You did not enter anything.")
+                Print.red("You did not enter anything.")
             elif ingredient_input == 'exit':
                 break
             else:
