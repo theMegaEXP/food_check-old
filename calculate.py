@@ -41,7 +41,11 @@ def calculate():
                 JOIN
                     ingredients ON ingredients.id = it.ingredient_id
                 WHERE
-                    s.id = symptoms.id AND (julianday(st.datetime) - julianday(it.datetime)) * 24 BETWEEN 0 AND 24
+                    s.id = symptoms.id 
+                    AND 
+                    (julianday(st.datetime) - julianday(it.datetime)) * 24 BETWEEN 0 AND 24 
+                    AND 
+                    ingredients.ingredient NOT IN (SELECT ingredient FROM ignored_ingredients)
                 GROUP BY
                     ingredients.id
                 ORDER BY
