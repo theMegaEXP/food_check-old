@@ -1,4 +1,4 @@
-from data.init import foods, symptomsAvailable as symptoms, symptomTimes
+from data.init import foods, symptomsAvailable as symptoms, symptomTimes, ignoredIngredients
 from database.db import DB
 from commandline.print import Print
 
@@ -50,7 +50,6 @@ def data_to_db():
                 DB.Query.insert_into('product_ingredients', ['product_id', 'ingredient_id'], [product_id, ingredient_id])
             
     del ingredients_added 
-
     Print.purple("ingredients done.")
     Print.purple("ingredient_times done.")
     Print.purple("products done.")
@@ -60,14 +59,17 @@ def data_to_db():
     for symptom in symptoms.data:
         if not DB.Query.value_exists('symptoms', 'symptom', symptom['symptom']):
             DB.Query.insert_into('symptoms', ['symptom'], [symptom['symptom']])
-
     Print.purple("symptoms done.")
 
     # Insert into symptom_times table
     for symptom in symptomTimes.data:
         symptom_id = DB.Query.fetch_id('symptoms', 'symptom', symptom['symptom'])
         DB.Query.insert_into('symptom_times', ['symptom_id', 'severity', 'date', 'time', 'datetime'], [symptom_id, symptom['severity'], symptom['date'], symptom['time'], symptom['datetime']])
+    Print.purple("symptom_times done.")
 
-    Print.purple("symptom times done.")
+    for ingredients in ignoredIngredients.data:
+        if not DB.Query.value_exists('ignored_ingredients', 'ingredient', ingredients['ingredient']):
+            DB.Query.insert_into('ignored_ingredients', ['ingredient'], [ingredients['ingredient']])
+    Print.purple("ignored_ingredients done.")
 
     Print.green('Data added to database tables.')
