@@ -10,7 +10,7 @@ from commandline.database import run_db_query
 from database.db import DB
 from database.import_sql import data_to_db
 import database.tables as tables
-from calculate import calculate
+from calculate import Results
 
 
 def start():
@@ -56,7 +56,7 @@ def start():
             DB.Operations.reset()
             tables.create_tables()
             data_to_db()
-            calculate()
+            Results.likey_symptom_cause()
         
         elif start_input == 4:
             foods.send_data()

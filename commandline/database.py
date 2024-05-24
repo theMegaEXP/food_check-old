@@ -5,7 +5,6 @@ from database.db import DB
 from commandline.print import Print
 from database.import_sql import data_to_db
 import database.tables as tables
-from calculate import calculate
 
 def run_db_query():
     Print.bold("You have entered the place to access the database.")
