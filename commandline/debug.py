@@ -50,9 +50,8 @@ class Debug:
         Print.bold("You have entered the debug area for the data.")
         print("Data: foods, symptomsAvailable, symptomTimes")
         print("Enter the name of the data you want to change before anything else.")
-        print("Type add followed by the number of how much dummy data you want to add.")
+        print("Type 'add' followed by the number of how much dummy data you want to add.")
         print("Type 'remove' to remove all dummy data from that data.")
-        print("Type 'remove all' to remove all dummy data.")
         print("Type 'exit' to exit.")
 
         availableDatapoints = ['foods', 'symptomsAvailable', 'symptomTimes']
@@ -82,9 +81,11 @@ class Debug:
                     Print.red("Your value is too small.")
                 else:
                     data_obj.add_dummy_data(int(command2_input))
+                    Print.green(f"{command2_input} dummy data entries added to {datapoint_input}")
 
             elif command1_input == 'remove' and command2_input == '':
                 data_obj.data = [d for d in data_obj.data if 'dummyData' not in d]
+                Print.green(f"Dummy data from {datapoint_input} removed.")
 
             else:
                 Print.red("You did not enter a correct value.")
