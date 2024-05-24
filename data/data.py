@@ -75,7 +75,8 @@ class Foods(Data):
                 'ingredients': ingredients,
                 'date': date,
                 'time': time,
-                'datetime': datetime
+                'datetime': datetime,
+                'dummyData': True,
             })
 
     def check_barcode(barcode):
@@ -109,6 +110,7 @@ class SymptomTimes(Data):
                 'date': date,
                 'time': time,
                 'datetime': datetime,
+                'dummyData': True,
             })
 
 
@@ -123,6 +125,7 @@ class SymptomsAvailable(Data):
         for i in range(amount):
             self.add_data({
                 'symptom': Generate.symptom(),
+                'dummyData': True,
             })
 
 

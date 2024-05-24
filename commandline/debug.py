@@ -83,6 +83,9 @@ class Debug:
                 else:
                     data_obj.add_dummy_data(int(command2_input))
 
+            elif command1_input == 'remove' and command2_input == '':
+                data_obj.data = [d for d in data_obj.data if 'dummyData' not in d]
+
             else:
                 Print.red("You did not enter a correct value.")
 
