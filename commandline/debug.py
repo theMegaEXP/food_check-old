@@ -1,10 +1,12 @@
 import re
 
+from helpers import index_exists
 from database.init import cursor as c, conn
 from database.db import DB
-from commandline.print import Print
 from database.import_sql import data_to_db
 import database.tables as tables
+from commandline.print import Print
+from data.init import foods, symptomsAvailable, symptomTimes
 
 class Debug:
     def database():
@@ -46,3 +48,41 @@ class Debug:
 
     def data():
         Print.bold("You have entered the debug area for the data.")
+        print("Data: foods, symptomsAvailable, symptomTimes")
+        print("Enter the name of the data you want to change before anything else.")
+        print("Type add followed by the number of how much dummy data you want to add.")
+        print("Type 'remove' to remove all dummy data from that data.")
+        print("Type 'remove all' to remove all dummy data.")
+        print("Type 'exit' to exit.")
+
+        availableDatapoints = ['foods', 'symptomsAvailable', 'symptomTimes']
+
+        while True:
+            data_input = input("Command: ").split(' ')
+            datapoint_input = data_input[0]
+            command1_input = data_input[1] if index_exists(data_input, 1) else ''
+            command2_input = data_input[2] if index_exists(data_input, 2) else ''
+
+            if datapoint_input == 'exit':
+                break
+
+            data_obj = ''
+            if datapoint_input not in availableDatapoints:
+                Print.red("You did not enter a coorect datapoint.")
+                continue
+            else:
+                data_obj = globals()[datapoint_input]
+
+            if command1_input == 'add' and command2_input != '' and command2_input.isdigit:
+                if not command2_input.isdigit():
+                    Print.red("You did not enter a number.")
+                elif int(command2_input) > 50:
+                    Print.red("You can not enter more than 50 dummy data entries at once.")
+                elif int(command2_input) < 0:
+                    Print.red("Your value is too small.")
+                else:
+                    data_obj.add_dummy_data(int(command2_input))
+
+            else:
+                Print.red("You did not enter a correct value.")
+
