@@ -1,34 +1,45 @@
+from helpers import hour_to_unit
 from database.db import DB
 from commandline.print import Print
 
+
 class Results:
 
-    def calculate():
-        pass
-        # query = """
-        #     SELECT
-        #         symptoms.symptom,
-        #         symptom_times.severity,
-        #         (julianday(symptom_times.datetime) - julianday(ingredient_times.datetime)) * 24 AS symptom_delay,
-        #         ingredients.ingredient
-        #     FROM
-        #         symptoms
-        #     JOIN
-        #         symptom_times ON symptoms.id = symptom_times.symptom_id
-        #     JOIN
-        #         ingredient_times ON ingredient_times.id = symptom_times.symptom_id
-        #     JOIN
-        #         ingredients ON ingredients.id = ingredient_times.ingredient_id
-        #     WHERE
-        #         symptom_delay > 0 AND symptom_delay < 24
-        #     GROUP BY 
-        #         ingredients.id
-        #     ORDER BY
-        #         COUNT(*) * AVG(symptom_times.severity) DESC
-        #     LIMIT
-        #         1;
+    def all():
+        query = """
+            SELECT
+                symptoms.symptom,
+                symptom_times.severity,
+                (julianday(symptom_times.datetime) - julianday(ingredient_times.datetime)) * 24 AS symptom_delay,
+                ingredients.ingredient
+            FROM
+                symptoms
+            JOIN
+                symptom_times ON symptoms.id = symptom_times.symptom_id
+            JOIN
+                ingredient_times ON ingredient_times.id = symptom_times.symptom_id
+            JOIN
+                ingredients ON ingredients.id = ingredient_times.ingredient_id
+            WHERE
+                symptom_delay BETWEEN 0 AND 24
             
-        # """
+        """
+        
+        results = DB.Query.query_results(query)
+        
+        Print.underline_bold("All data ingredietns that could be causing symptoms within 24 hours.")
+        for result in results:
+            symptom = result[0]
+            severity = result[1]
+            delay = hour_to_unit(result[2])
+            ingredient = result[3]
+
+            Print.key_value('Symptom', symptom)
+            Print.key_value('Severity', severity)
+            Print.key_value('Delay', delay)
+            Print.key_value('Ingredient', ingredient)
+            print()
+
 
     def likey_symptom_cause():
         query = """

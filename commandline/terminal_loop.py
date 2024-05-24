@@ -57,6 +57,7 @@ def start():
             tables.create_tables()
             data_to_db()
             Results.likey_symptom_cause()
+            Results.all()
         
         elif start_input == 4:
             foods.send_data()
