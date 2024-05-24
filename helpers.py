@@ -31,3 +31,10 @@ def calc_time_diff(date1, date2):
     hours_diff = time_diff.total_seconds() / 3600
 
     return hours_diff
+
+def index_exists(lst: list, index: int):
+    try: 
+        lst[index]
+        return True
+    except IndexError:
+        return False
