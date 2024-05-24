@@ -12,3 +12,4 @@ symptomTimes = SymptomTimes()
 symptomTimes.retrieve_data()
 
 ignoredIngredients = IgnoredIngredients()
+ignoredIngredients.retrieve_data()
