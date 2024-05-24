@@ -6,7 +6,7 @@ from data.init import Data, foods, symptomsAvailable, symptomTimes, ignoredIngre
 from data.barcode_search import get_product_ingredients
 from commandline.print import Print
 from commandline.validation import Validate
-from commandline.database import run_db_query
+from commandline.debug import Debug
 from database.db import DB
 from database.import_sql import data_to_db
 import database.tables as tables
@@ -15,7 +15,7 @@ from calculate import Results
 
 def start():
     while True:
-        Print.underline("Press 1 to enter data. Press 2 to view data. Press 3 to calculate data. Press 4 to exit. Press 5 to access the database.")
+        Print.underline("Press 1 to enter data. Press 2 to view data. Press 3 to calculate data. Press 4 to exit. Press 5 to debug.")
         start_input = Validate.integer(1, 5)
 
         if start_input == 1:
@@ -49,7 +49,7 @@ def start():
             elif secondary_input == 4:
                 ViewData.ignoredIngredients()
             else: 
-                Print.underline("You did not enter the specified fields. Program staring over...")
+                Print.red("You did not enter the specified fields. Program staring over...")
                 continue
             
         elif start_input == 3:
@@ -69,7 +69,16 @@ def start():
             break
         
         elif start_input == 5:
-            run_db_query()
+            Print.underline("Press 1 to debug the database. Press 2 to debug the data.")
+            secondary_input = Validate.integer(1, 2)
+
+            if secondary_input == 1:
+                Debug.database()
+            elif secondary_input == 2:
+                Debug.data()
+            else:
+                Print.red("You did not enter the specified fields. Program staring over...")
+                continue
 
         else:
             continue
