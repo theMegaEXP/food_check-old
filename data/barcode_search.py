@@ -25,9 +25,9 @@ def get_product_ingredients(barcode):
                 description = data['foods'][0]['description']
                 return f"{brandname} {description}", ingredients
             except (IndexError, AttributeError):
-                return False
+                return None, None
         else:
-            return False
+            return None, None
    
         
 

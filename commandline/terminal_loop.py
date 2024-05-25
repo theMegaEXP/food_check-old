@@ -98,6 +98,10 @@ class InsertData:
         barcode = Validate.barcode(False)
         product, ingredients = get_product_ingredients(barcode)
 
+        if product == None and ingredients == None:
+            Print.red("A product with that barcode could not be found. Please enter the ingredients manually.")
+            return
+
         if ingredients == False or len(barcode) != 12:
             Print.red("Unable to retreive ingredients based on barcode data")
         else:
