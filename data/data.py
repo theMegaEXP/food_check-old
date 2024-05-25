@@ -79,16 +79,18 @@ class Foods(Data):
                 'dummyData': True,
             })
 
-    def check_barcode(barcode):
-        return any(d.get('barcode') == barcode for d in Data.data_all['foods'])
+    def check_barcode(self, barcode):
+        return any(d.get('barcode') == barcode for d in self.data)
     
-    def ingredients_from_barcode(barcode):
-        for dict in Data.data_all['foods']:
-            return dict['ingredients'] if dict['barcode'] == barcode else None
+    def ingredients_from_barcode(self, barcode):
+        for dict in self.data:
+            if dict['barcode'] == barcode:
+                return dict['ingredients']
         
-    def product_from_barcode(barcode):
-        for dict in Data.data_all['foods']:
-            return dict['product'] if dict['barcode'] == barcode else None
+    def product_from_barcode(self, barcode):
+        for dict in self.data:
+            if dict['barcode'] == barcode:
+                return dict['product']
 
 class SymptomTimes(Data):
     def __init__(self):

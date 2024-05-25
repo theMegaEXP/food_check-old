@@ -12,7 +12,9 @@ def format_datetime(date_str, time_str):
     return formatted_datetime
 
 def ingredients_to_array(ingredients):
-    return [elem for elem in re.split(r', |\(|\)', ingredients) if elem != '']
+    if ingredients[-1] == '.':
+        ingredients = ingredients[:-1]
+    return [elem.strip() for elem in re.split(r', |\(|\)', ingredients) if elem != '']
 
 def hour_to_unit(hour):
     if hour > 1 and isinstance(hour, float):
