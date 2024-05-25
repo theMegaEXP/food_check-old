@@ -14,7 +14,7 @@ def format_datetime(date_str, time_str):
 def ingredients_to_array(ingredients):
     if ingredients[-1] == '.':
         ingredients = ingredients[:-1]
-    return [elem.strip() for elem in re.split(r', |\(|\)', ingredients) if elem != '']
+    return [elem.strip().lower() for elem in re.split(r', |\(|\)', ingredients) if elem != '']
 
 def hour_to_unit(hour):
     if hour > 1 and isinstance(hour, float):
