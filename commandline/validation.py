@@ -82,7 +82,7 @@ class Validate:
                 Print.red("The time entered is not valid.")
 
     def severity():
-        severity_input = input("Rank from 1-10 how sever this symptom is right now: ")
+        severity_input = input("Rank from 1-10 how sever this symptom was/is: ")
 
         if not severity_input.isdigit():
             Print.red("You must enter a number here.")
