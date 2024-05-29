@@ -11,6 +11,7 @@ class HomePage:
         self.ui.setupUi(self.widget)
 
         self.pageSetup()
+        self.buttonSetup()
 
     def pageSetup(self):
         show_foods_page = ShowFoodsPage()
@@ -18,3 +19,6 @@ class HomePage:
         self.ui.stackedWidget.addWidget(show_foods_page.widget)
         self.ui.stackedWidget.addWidget(show_symptoms_page.widget)
         self.ui.stackedWidget.setCurrentWidget(show_foods_page.widget)
+
+    def buttonSetup(self):
+        pass
