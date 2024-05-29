@@ -15,6 +15,6 @@ class MainWindow:
         self.main_win.show()
 
     def pageSetup(self):
-        self.home_page = HomePage()
-        self.ui.stackedWidget.addWidget(self.home_page.widget)
-        self.ui.stackedWidget.setCurrentWidget(self.home_page.widget)
+        home_page = HomePage()
+        self.ui.stackedWidget.addWidget(home_page.widget)
+        self.ui.stackedWidget.setCurrentWidget(home_page.widget)
