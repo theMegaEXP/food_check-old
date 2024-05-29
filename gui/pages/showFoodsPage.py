@@ -1,5 +1,4 @@
 from PyQt5.QtWidgets import QWidget, QSpacerItem, QSizePolicy
-from PyQt5.QtCore import Qt
 
 from gui.designer.Ui_showFoodsPage import Ui_showFoodsPage
 from gui.widgets.foodListing import FoodListing
@@ -17,7 +16,7 @@ class ShowFoodsPage:
     def generate_listings(self):
         for food in foods.data:
             food_listing = FoodListing(barcode=food['barcode'], product=food['product'], ingredients=food['ingredients'], date=food['date'], time=food['time'])
-            self.ui.verticalLayout.addWidget(food_listing.widget, alignment=Qt.AlignTop)
+            self.ui.verticalLayout.addWidget(food_listing.widget)
         
     def add_items(self):    
         self.ui.verticalLayout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
