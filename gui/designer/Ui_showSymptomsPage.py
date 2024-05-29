@@ -17,9 +17,6 @@ class Ui_showSymptomsPage(object):
         showSymptomsPage.resize(309, 265)
         self.verticalLayout = QtWidgets.QVBoxLayout(showSymptomsPage)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(showSymptomsPage)
-        self.label.setObjectName("label")
-        self.verticalLayout.addWidget(self.label)
 
         self.retranslateUi(showSymptomsPage)
         QtCore.QMetaObject.connectSlotsByName(showSymptomsPage)
@@ -27,4 +24,3 @@ class Ui_showSymptomsPage(object):
     def retranslateUi(self, showSymptomsPage):
         _translate = QtCore.QCoreApplication.translate
         showSymptomsPage.setWindowTitle(_translate("showSymptomsPage", "ShowSymptomsPage"))
-        self.label.setText(_translate("showSymptomsPage", "Show Symptoms Page"))
