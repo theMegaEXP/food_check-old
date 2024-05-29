@@ -15,7 +15,8 @@ class ShowSymptomsPage:
     
     def generate_listings(self):
         for symptom in symptoms.data:
-            food_listing = SymptomListing(symptom=symptom['symptom'], severity=str(symptom['severity']), date=symptom['date'], time=symptom['time'])
+            symptom_listing = SymptomListing(symptom=symptom['symptom'], severity=str(symptom['severity']), date=symptom['date'], time=symptom['time'])
+            self.ui.verticalLayout.addWidget(symptom_listing.widget)
         
     def add_items(self):    
         self.ui.verticalLayout.addItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))

@@ -12,7 +12,7 @@ class SymptomListing:
         self.alter_fields()
 
     def alter_fields(self):
-        self.ui.symptomLabel.setText(self.kwargs['symptom'])
+        self.ui.symptomLabel.setText(self.kwargs['symptom'].title())
         self.ui.severityLabel.setText(self.kwargs['severity'])
         self.ui.dateLabel.setText(self.kwargs['date'])
         self.ui.timeLabel.setText(self.kwargs['time'])
