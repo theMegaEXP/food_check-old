@@ -9,12 +9,12 @@ class FoodListing:
         self.ui = Ui_foodListing()
         self.ui.setupUi(self.widget)
 
-        self.alter_fields
+        self.alter_fields()
 
     def alter_fields(self):
         #self.ui.brandLabel = self.kwargs['brand_label']
         #self.ui.productLabel = self.kwargs['product_label']
-        self.ui.ingredientsLabel = ', '.join(self.kwargs['ingredients'])
-        self.ui.dateLabel = self.kwargs['date']
-        self.ui.timeLabel = self.kwargs['time']
+        self.ui.ingredientsLabel.setText(', '.join(self.kwargs['ingredients']))
+        self.ui.dateLabel.setText(self.kwargs['date'])
+        self.ui.timeLabel.setText(self.kwargs['time'])
     
