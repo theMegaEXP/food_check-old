@@ -18,12 +18,6 @@ class Ui_showFoodsPage(object):
         showFoodsPage.setMaximumSize(QtCore.QSize(360, 640))
         self.verticalLayout = QtWidgets.QVBoxLayout(showFoodsPage)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(showFoodsPage)
-        self.label.setObjectName("label")
-        self.verticalLayout.addWidget(self.label)
-        self.label_2 = QtWidgets.QLabel(showFoodsPage)
-        self.label_2.setObjectName("label_2")
-        self.verticalLayout.addWidget(self.label_2)
 
         self.retranslateUi(showFoodsPage)
         QtCore.QMetaObject.connectSlotsByName(showFoodsPage)
@@ -31,5 +25,3 @@ class Ui_showFoodsPage(object):
     def retranslateUi(self, showFoodsPage):
         _translate = QtCore.QCoreApplication.translate
         showFoodsPage.setWindowTitle(_translate("showFoodsPage", "ShowFoodsPage"))
-        self.label.setText(_translate("showFoodsPage", "Test"))
-        self.label_2.setText(_translate("showFoodsPage", "TextLabel"))
