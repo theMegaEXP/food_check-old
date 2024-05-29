@@ -11,21 +11,21 @@ class HomePage:
         self.ui = Ui_homePage()
         self.ui.setupUi(self.widget)
 
-        self.pageSetup()
-        self.buttonSetup()
+        self.page_setup()
+        self.button_setup()
 
-    def pageSetup(self):
+    def page_setup(self):
         self.show_foods_page = ShowFoodsPage()
         self.show_symptoms_page = ShowSymptomsPage()
         self.ui.stackedWidget.addWidget(self.show_foods_page.widget)
         self.ui.stackedWidget.addWidget(self.show_symptoms_page.widget)
         self.ui.stackedWidget.setCurrentWidget(self.show_foods_page.widget)
 
-    def buttonSetup(self):
-        self.ui.enterSymptomPage.clicked.connect(lambda: self.main_window.pageConnectAddSymptoms())
+    def button_setup(self):
+        self.ui.enterSymptomPage.clicked.connect(lambda: self.main_window.page_connect_add_symptoms())
 
-        self.ui.foodsPageBtn.clicked.connect(lambda: self.pageConnectDisplays(self.show_foods_page.widget))
-        self.ui.symptomsPageBtn.clicked.connect(lambda: self.pageConnectDisplays(self.show_symptoms_page.widget))
+        self.ui.foodsPageBtn.clicked.connect(lambda: self.page_connect_displays(self.show_foods_page.widget))
+        self.ui.symptomsPageBtn.clicked.connect(lambda: self.page_connect_displays(self.show_symptoms_page.widget))
 
-    def pageConnectDisplays(self, page):
+    def page_connect_displays(self, page):
         self.ui.stackedWidget.setCurrentWidget(page)
