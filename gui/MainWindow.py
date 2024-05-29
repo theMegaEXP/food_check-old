@@ -17,12 +17,14 @@ class MainWindow:
 
     def page_setup(self):
         self.home_page = HomePage(self)
-        self.add_symptom_page = AddSymptomPage()
+        self.add_symptom_page = AddSymptomPage(self)
         self.ui.stackedWidget.addWidget(self.home_page.widget)
         self.ui.stackedWidget.addWidget(self.add_symptom_page.widget)
         self.ui.stackedWidget.setCurrentWidget(self.home_page.widget)
 
+    def page_connect_home(self):
+        self.ui.stackedWidget.setCurrentWidget(self.home_page.widget)
+
     def page_connect_add_symptoms(self):
-        print("method called")
         self.ui.stackedWidget.setCurrentWidget(self.add_symptom_page.widget)
 
