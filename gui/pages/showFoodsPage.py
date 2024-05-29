@@ -14,7 +14,7 @@ class ShowFoodsPage:
         self.add_items()
     
     def generate_listings(self):
-        for i in range(10):
+        for _ in range(7):
             food_listing = FoodListing(ingredients=['wheat', 'milk', 'soy'], date="10/05/2024", time="5:50PM")
             self.ui.verticalLayout.addWidget(food_listing.widget, alignment=Qt.AlignTop)
         

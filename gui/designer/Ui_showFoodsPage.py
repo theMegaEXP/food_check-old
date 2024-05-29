@@ -14,8 +14,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_showFoodsPage(object):
     def setupUi(self, showFoodsPage):
         showFoodsPage.setObjectName("showFoodsPage")
-        showFoodsPage.resize(360, 640)
-        showFoodsPage.setMaximumSize(QtCore.QSize(360, 640))
+        showFoodsPage.resize(360, 638)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(showFoodsPage.sizePolicy().hasHeightForWidth())
+        showFoodsPage.setSizePolicy(sizePolicy)
+        showFoodsPage.setMaximumSize(QtCore.QSize(360, 50000))
         self.verticalLayout = QtWidgets.QVBoxLayout(showFoodsPage)
         self.verticalLayout.setObjectName("verticalLayout")
 

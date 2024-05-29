@@ -14,7 +14,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_foodListing(object):
     def setupUi(self, foodListing):
         foodListing.setObjectName("foodListing")
-        foodListing.resize(318, 111)
+        foodListing.resize(318, 109)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(foodListing.sizePolicy().hasHeightForWidth())
+        foodListing.setSizePolicy(sizePolicy)
         self.verticalLayout = QtWidgets.QVBoxLayout(foodListing)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
