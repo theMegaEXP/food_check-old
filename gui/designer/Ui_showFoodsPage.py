@@ -15,7 +15,7 @@ class Ui_showFoodsPage(object):
     def setupUi(self, showFoodsPage):
         showFoodsPage.setObjectName("showFoodsPage")
         showFoodsPage.resize(360, 638)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(showFoodsPage.sizePolicy().hasHeightForWidth())
