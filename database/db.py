@@ -51,6 +51,9 @@ class DB:
         def composite_key_exists(table: str, column1: str, value1: str, column2: str, value2: str):
             c.execute(f"SELECT COUNT(*) FROM {table} WHERE {column1} = ? AND {column2} = ?", (value1, value2))
             return c.fetchone()[0] > 0
+        
+        def delete_by_column(table: str, column: str, value: str):
+            c.execute(f"DELETE FROM {table} WHERE {column} = {value}")
             
     class View:
         def show_tables():
